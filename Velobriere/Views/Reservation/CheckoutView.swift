@@ -119,6 +119,13 @@ struct CheckoutView: View {
             }
             .foregroundStyle(Theme.Colors.ink)
 
+            ForEach(reservation.extras ?? []) { extra in
+                HStack {
+                    Text("\(extra.label) × \(extra.quantity)").font(Theme.Fonts.body(14))
+                    Spacer()
+                    Text(extra.total.eur).font(Theme.Fonts.body(14))
+                }
+            }
             if reservation.includesDelivery {
                 HStack {
                     Text("Livraison").font(Theme.Fonts.body(14))

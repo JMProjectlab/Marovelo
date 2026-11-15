@@ -1,4 +1,4 @@
-# Ker Vélo Brière — réservation de vélos électriques
+# Mar'o Vélo — réservation de vélos électriques
 
 Deux applications, mêmes fonctionnalités et mêmes règles métier :
 
@@ -19,7 +19,7 @@ les deux applications ne la lit — c'est à nous de nous y tenir.
 
 ## App iOS de réservation
 
-App iOS (SwiftUI) pour réserver un vélo auprès de **Ker Vélo Brière**, location de vélos
+App iOS (SwiftUI) pour réserver un vélo auprès de **Mar'o Vélo**, location de vélos
 électriques à Saint-Lyphard, au cœur du Parc naturel régional de Brière.
 
 ## Ouvrir le projet
@@ -43,8 +43,13 @@ avant mise en production.
   disponibilité des L/XL. La taille se choisit sur la fiche vélo et dans le
   formulaire, et se retrouve sur la réservation, la confirmation et la facture.
 - **Fiche vélo** : photos des deux tailles, présentation, points forts et la grille
-  tarifaire réelle (demi-journée 25 €, journée 39 €, week-end 69 €, semaine 169 €,
-  livraison +10 € dans un rayon de 10 km).
+  tarifaire réelle (demi-journée 9h–13h 19 €, journée 9h–19h 29 €, week-end du
+  vendredi 19h au dimanche 19h 59 €, semaine de 7 jours consécutifs 139 €,
+  livraison +15 € dans un rayon de 15 km).
+- **Options** : l'antivol est inclus avec chaque vélo ; le casque et le panier
+  s'ajoutent à la réservation à **1 € par jour et par vélo**. Les jours facturés
+  suivent la formule — un pour la demi-journée et la journée, deux pour le
+  week-end, sept pour la semaine — et chaque option devient une ligne de facture.
 - **Réservation** : formulaire (taille, dates, nombre de vélos, coordonnées,
   remarques), paiement, écran de confirmation.
 - **Mes réservations** : liste des demandes enregistrées, suppression par glissement.

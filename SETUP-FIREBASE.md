@@ -1,4 +1,4 @@
-# Brancher Ker Vélo Brière sur Firebase
+# Brancher Mar'o Vélo sur Firebase
 
 Aujourd'hui, l'application **n'a aucun serveur** : les réservations vivent dans
 un fichier local sur iOS et dans le `localStorage` du navigateur sur le web.

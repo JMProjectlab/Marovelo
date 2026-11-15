@@ -1,4 +1,4 @@
-# Ker Vélo Brière — application web
+# Mar'o Vélo — application web
 
 Version web de l'application de réservation, accessible depuis un ordinateur,
 une tablette ou un téléphone. Mêmes fonctionnalités que l'app iOS, mise en page

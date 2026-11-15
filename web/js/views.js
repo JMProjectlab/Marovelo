@@ -21,7 +21,7 @@ VB.viewCatalog = () => {
       <p class="eyebrow">Location de vélos électriques</p>
       <h1>Réservez votre vélo</h1>
       <p class="lede">Balades électriques au cœur de la Brière, entre marais, villages et chemins.
-      Casque et antivol inclus, livraison possible dans un rayon de ${bike.deliveryRadiusKm} km.</p>
+      Antivol inclus, casque et panier en option, livraison possible dans un rayon de ${bike.deliveryRadiusKm} km.</p>
     </div>
 
     <div class="catalog-grid">
@@ -94,10 +94,11 @@ VB.viewBike = () => {
           <p class="section-label">Tarifs</p>
           ${bike.pricingOptions.map(o => `
             <div class="price-row">
-              <span class="label">${VB.esc(o.label)}</span>
+              <span class="label">${VB.esc(o.label)}<br><small class="price-schedule">${VB.esc(o.schedule)}</small></span>
               <span class="amount">${VB.formatEUR(o.price)}</span>
             </div>`).join('')}
-          <p class="fine-print">Casque et antivol inclus dans toutes les locations.<br>
+          <p class="fine-print">Antivol inclus avec chaque vélo.<br>
+          ${bike.extras.map(x => VB.esc(x.label.toLowerCase())).join(' et ').replace(/^./, c => c.toUpperCase())} en option : +${VB.formatEUR(1)} par jour et par vélo.<br>
           Livraison en option : +${VB.formatEUR(bike.deliveryFee)} (rayon ${bike.deliveryRadiusKm} km).</p>
           <button class="btn btn-primary btn-block" style="margin-top:18px;" data-action="start-booking">
             Réserver ce vélo
@@ -177,6 +178,10 @@ VB.renderCalendar = draft => {
 
 /* ---------- Résumé tarifaire ---------- */
 
+/** Une ligne de résumé par option retenue : « Casque × 14 ». */
+VB.renderExtraLines = draft => VB.selectedExtras(draft).map(x => `
+    <div class="summary-line"><span>${VB.esc(x.label)} × ${x.quantity}</span><span class="amt">${VB.formatEUR(x.total)}</span></div>`).join('');
+
 VB.renderSummary = draft => {
   const option = VB.currentOption(draft);
   const base = VB.round2(option.price * draft.quantity);
@@ -184,6 +189,7 @@ VB.renderSummary = draft => {
   return `
     <div class="summary-line"><span>Taille ${VB.esc(VB.variantById(draft.variantId).size)}</span><span class="amt"></span></div>
     <div class="summary-line"><span>${VB.esc(option.label)} × ${draft.quantity}</span><span class="amt">${VB.formatEUR(base)}</span></div>
+    ${VB.renderExtraLines(draft)}
     ${draft.includesDelivery ? `<div class="summary-line"><span>Livraison</span><span class="amt">${VB.formatEUR(VB.BIKE.deliveryFee)}</span></div>` : ''}
     <div class="summary-total"><span>Total</span><span class="amt">${VB.formatEUR(total)}</span></div>
   `;
@@ -244,6 +250,13 @@ VB.viewBooking = draft => {
               <button type="button" class="segment" data-option="${o.id}"
                       aria-pressed="${o.id === draft.pricingOptionId}">${VB.esc(o.label)}</button>`).join('')}
           </div>
+          <p class="fine-print" id="optionSchedule">${VB.esc(VB.currentOption(draft).schedule)}</p>
+          ${bike.extras.map(x => `
+          <label class="toggle-row">
+            <input type="checkbox" class="field-extra" data-extra="${x.id}" ${draft.extraIds.includes(x.id) ? 'checked' : ''}>
+            <span class="toggle-track"></span>
+            <span class="toggle-label">${VB.esc(x.label)} (+${VB.formatEUR(x.pricePerDay)} par jour et par vélo)</span>
+          </label>`).join('')}
           <label class="toggle-row">
             <input type="checkbox" id="fieldDelivery" ${draft.includesDelivery ? 'checked' : ''}>
             <span class="toggle-track"></span>
@@ -378,6 +391,7 @@ VB.viewCheckout = draft => {
           <div class="summary-line"><span>${VB.esc(VB.BIKE.name)} — taille ${VB.esc(VB.variantById(draft.variantId).size)}</span><span class="amt"></span></div>
           <div class="summary-line"><span>Du ${VB.formatShort(draft.start)} au ${VB.formatShort(draft.end)}</span><span class="amt"></span></div>
           <div class="summary-line"><span>${VB.esc(option.label)} × ${draft.quantity}</span><span class="amt">${VB.formatEUR(base)}</span></div>
+          ${VB.renderExtraLines(draft)}
           ${draft.includesDelivery ? `<div class="summary-line"><span>Livraison</span><span class="amt">${VB.formatEUR(VB.BIKE.deliveryFee)}</span></div>` : ''}
           <div class="summary-total"><span>Total à payer</span><span class="amt">${VB.formatEUR(total)}</span></div>
           <p class="fine-print">Le paiement vaut acceptation des conditions générales de location.
@@ -495,6 +509,7 @@ VB.viewReservationDetail = id => {
           <div class="detail-row"><span class="k">Au</span><span class="v">${VB.formatDate(r.end)}</span></div>
           <div class="detail-row"><span class="k">Formule</span><span class="v">${VB.esc(r.pricingLabel)}</span></div>
           <div class="detail-row"><span class="k">Vélos</span><span class="v">${r.quantity}</span></div>
+          ${(r.extras || []).map(x => `<div class="detail-row"><span class="k">${VB.esc(x.label)}</span><span class="v">× ${x.quantity}</span></div>`).join('')}
           ${r.includesDelivery ? '<div class="detail-row"><span class="k">Livraison</span><span class="v">Incluse</span></div>' : ''}
           <div class="summary-total"><span>Montant payé</span><span class="amt">${VB.formatEUR(r.totalPrice)}</span></div>
           ${r.paymentMethod ? `<p class="fine-print">Réglé par ${r.paymentMethod === 'applePay' ? 'Apple Pay' : 'carte bancaire'}.</p>` : ''}
@@ -607,7 +622,7 @@ ${VB.esc(inv.customerEmail || '')}</p>
 VB.viewLegalIndex = () => `
   <div class="page-head">
     <h1>Informations</h1>
-    <p class="lede">Informations légales de Ker Vélo Brière et détail du traitement de vos données.</p>
+    <p class="lede">Informations légales de Mar'o Vélo et détail du traitement de vos données.</p>
   </div>
   <div class="legal-grid">
     ${VB.LEGAL_DOCS.map(doc => `
@@ -939,12 +954,12 @@ VB.viewHome = () => {
     <div class="home">
       <div class="home-hero">
         <div class="home-logo">
-          <img src="assets/logo.jpg" alt="Ker Vélo Brière — vélo électrique au bord des marais de Brière" width="480" height="480">
+          <img src="assets/logo.jpg" alt="Mar'o Vélo — vélo électrique au bord des marais de Brière" width="480" height="480">
         </div>
-        <h1 class="home-title">KER VÉLO BRIÈRE</h1>
-        <p class="home-tagline">Location de vélos électriques</p>
+        <h1 class="home-title">MAR'O VÉLO</h1>
+        <p class="home-tagline">Location de vélos électriques en Brière</p>
         <p class="home-lede">Balades électriques au cœur de la Brière, entre marais, villages et chemins.
-        Casque et antivol inclus, livraison possible dans un rayon de ${VB.BIKE.deliveryRadiusKm} km.</p>
+        Antivol inclus, casque et panier en option, livraison possible dans un rayon de ${VB.BIKE.deliveryRadiusKm} km.</p>
       </div>
 
       <div class="home-grid">

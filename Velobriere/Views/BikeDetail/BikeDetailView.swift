@@ -46,9 +46,14 @@ struct BikeDetailView: View {
 
                     ForEach(bike.pricingOptions) { option in
                         HStack {
-                            Text(option.label)
-                                .font(Theme.Fonts.body(14))
-                                .foregroundStyle(Theme.Colors.ink)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(option.label)
+                                    .font(Theme.Fonts.body(14))
+                                    .foregroundStyle(Theme.Colors.ink)
+                                Text(option.schedule)
+                                    .font(Theme.Fonts.body(12))
+                                    .foregroundStyle(Theme.Colors.inkSoft)
+                            }
                             Spacer()
                             Text(option.displayPrice)
                                 .font(Theme.Fonts.body(14, weight: .semibold))
@@ -59,10 +64,13 @@ struct BikeDetailView: View {
                         }
                     }
 
-                    Text("Casque et antivol inclus dans toutes les locations.")
+                    Text("Antivol inclus avec chaque vélo.")
                         .font(Theme.Fonts.body(12))
                         .foregroundStyle(Theme.Colors.inkSoft)
                         .padding(.top, Theme.Spacing.xs)
+                    Text("Casque et panier en option : +1 € par jour et par vélo.")
+                        .font(Theme.Fonts.body(12))
+                        .foregroundStyle(Theme.Colors.inkSoft)
                     Text("Livraison en option : +\(bike.deliveryFee.formatted(.currency(code: "EUR"))) (rayon \(bike.deliveryRadiusKm) km).")
                         .font(Theme.Fonts.body(12))
                         .foregroundStyle(Theme.Colors.inkSoft)

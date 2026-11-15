@@ -14,6 +14,7 @@ VB.newDraft = () => {
     quantity: 1,
     variantId: VB.selectedVariantId || VB.BIKE.variants[0].id,
     pricingOptionId: VB.BIKE.pricingOptions[0].id,
+    extraIds: [],
     includesDelivery: false,
     firstName: account ? account.firstName : '',
     lastName: account ? account.lastName : '',
@@ -29,7 +30,19 @@ VB.draft = null;
 /** Taille retenue sur la fiche vélo, reprise à l'ouverture du formulaire. */
 VB.selectedVariantId = VB.BIKE.variants[0].id;
 VB.currentOption = d => VB.BIKE.pricingOptions.find(o => o.id === d.pricingOptionId) || VB.BIKE.pricingOptions[0];
-VB.computeTotal = d => VB.round2(VB.currentOption(d).price * d.quantity + (d.includesDelivery ? VB.BIKE.deliveryFee : 0));
+
+/* Casque et panier sont facturés au jour et par vélo : le nombre d'unités est
+   donc le nombre de vélos multiplié par les jours facturés de la formule. La
+   ligne est figée dans la réservation, pour que la facture reste lisible même
+   si les tarifs changent ensuite. */
+VB.selectedExtras = d => VB.BIKE.extras
+  .filter(x => (d.extraIds || []).includes(x.id))
+  .map(x => {
+    const quantity = VB.currentOption(d).billedDays * d.quantity;
+    return { id: x.id, label: x.label, quantity, unitPrice: x.pricePerDay, total: VB.round2(quantity * x.pricePerDay) };
+  });
+VB.extrasTotal = d => VB.round2(VB.selectedExtras(d).reduce((sum, x) => sum + x.total, 0));
+VB.computeTotal = d => VB.round2(VB.currentOption(d).price * d.quantity + VB.extrasTotal(d) + (d.includesDelivery ? VB.BIKE.deliveryFee : 0));
 VB.clampQuantity = d => {
   const avail = VB.availableRange(d.start, d.end, d.variantId);
   d.quantity = avail > 0 ? Math.min(d.quantity, avail) : 1;
@@ -302,6 +315,7 @@ VB.pay = async method => {
     start: d.start, end: d.end, quantity: d.quantity,
     variantId: d.variantId, variantLabel: VB.variantById(d.variantId).size,
     pricingLabel: option.label, pricePerUnit: option.price,
+    extras: VB.selectedExtras(d),
     includesDelivery: d.includesDelivery, deliveryFee: VB.BIKE.deliveryFee,
     totalPrice: VB.computeTotal(d),
     firstName: d.firstName.trim(), lastName: d.lastName.trim().toUpperCase(),
@@ -652,6 +666,8 @@ VB.bindEvents = () => {
       VB.draft.pricingOptionId = t.dataset.option;
       document.querySelectorAll('[data-option]').forEach(b =>
         b.setAttribute('aria-pressed', b.dataset.option === t.dataset.option));
+      const schedule = document.getElementById('optionSchedule');
+      if (schedule) schedule.textContent = VB.currentOption(VB.draft).schedule;
       VB.refreshSummary();
       return VB.refreshValidation();
     }
@@ -699,6 +715,13 @@ VB.bindEvents = () => {
     if (!VB.draft) return;
     if (e.target.id === 'fieldCountryCode') { VB.draft.countryCode = e.target.value; VB.refreshValidation(); }
     if (e.target.id === 'fieldDelivery') { VB.draft.includesDelivery = e.target.checked; VB.refreshSummary(); VB.refreshValidation(); }
+    if (e.target.classList.contains('field-extra')) {
+      const id = e.target.dataset.extra;
+      VB.draft.extraIds = e.target.checked
+        ? [...VB.draft.extraIds, id]
+        : VB.draft.extraIds.filter(x => x !== id);
+      VB.refreshSummary(); VB.refreshValidation();
+    }
     if (e.target.id === 'fieldTerms') { VB.draft.acceptedTerms = e.target.checked; VB.refreshValidation(); }
   });
 

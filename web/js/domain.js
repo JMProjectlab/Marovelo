@@ -219,6 +219,9 @@ VB.issueInvoice = (reservation, method) => {
     quantity: reservation.quantity,
     unitPrice: reservation.pricePerUnit
   }];
+  (reservation.extras || []).forEach(x => {
+    lines.push({ label: `${x.label} (par jour et par vélo)`, quantity: x.quantity, unitPrice: x.unitPrice });
+  });
   if (reservation.includesDelivery) {
     lines.push({ label: 'Livraison à domicile', quantity: 1, unitPrice: reservation.deliveryFee });
   }

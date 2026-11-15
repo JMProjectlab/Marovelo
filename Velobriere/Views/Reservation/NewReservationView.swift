@@ -13,6 +13,7 @@ struct NewReservationView: View {
     @State private var selectedVariantID: String
     @State private var selectedPricingOptionID: String
     @State private var includesDelivery = false
+    @State private var selectedExtraIDs: Set<String> = []
     @State private var customerFirstName = ""
     @State private var customerLastName = ""
     @State private var countryCode = CountryCodes.default.dial
@@ -42,9 +43,29 @@ struct NewReservationView: View {
         bike.pricingOptions.first(where: { $0.id == selectedPricingOptionID })
     }
 
+    /// Les options retenues, déjà chiffrées : le nombre d'unités est le nombre
+    /// de vélos multiplié par les jours facturés de la formule.
+    private var selectedExtras: [ReservationExtra] {
+        guard let option = selectedPricingOption else { return [] }
+        return bike.extras
+            .filter { selectedExtraIDs.contains($0.id) }
+            .map { extra in
+                ReservationExtra(
+                    id: extra.id,
+                    label: extra.label,
+                    quantity: option.billedDays * quantity,
+                    unitPrice: extra.pricePerDay
+                )
+            }
+    }
+
+    private var extrasTotal: Double {
+        selectedExtras.reduce(0) { $0 + $1.total }
+    }
+
     private var totalPrice: Double {
         let base = (selectedPricingOption?.price ?? 0) * Double(quantity)
-        return base + (includesDelivery ? bike.deliveryFee : 0)
+        return base + extrasTotal + (includesDelivery ? bike.deliveryFee : 0)
     }
 
     var body: some View {
@@ -92,6 +113,28 @@ struct NewReservationView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+
+                    if let schedule = selectedPricingOption?.schedule {
+                        Text(schedule)
+                            .font(Theme.Fonts.body(12))
+                            .foregroundStyle(Theme.Colors.inkSoft)
+                    }
+
+                    ForEach(bike.extras) { extra in
+                        Toggle(isOn: Binding(
+                            get: { selectedExtraIDs.contains(extra.id) },
+                            set: { isOn in
+                                if isOn { selectedExtraIDs.insert(extra.id) }
+                                else { selectedExtraIDs.remove(extra.id) }
+                            }
+                        )) {
+                            Text("\(extra.label) (+\(extra.displayPricePerDay) par jour et par vélo)")
+                                .font(Theme.Fonts.body(13))
+                                .foregroundStyle(Theme.Colors.ink)
+                        }
+                        .tint(Theme.Colors.primary)
+                        .padding(.top, Theme.Spacing.xs)
+                    }
 
                     Toggle(isOn: $includesDelivery) {
                         Text("Livraison à domicile (+\(bike.deliveryFee.formatted(.currency(code: "EUR"))), rayon \(bike.deliveryRadiusKm) km)")
@@ -202,6 +245,17 @@ struct NewReservationView: View {
                                 .foregroundStyle(Theme.Colors.ink)
                         }
                     }
+                    ForEach(selectedExtras) { extra in
+                        HStack {
+                            Text("\(extra.label) × \(extra.quantity)")
+                                .font(Theme.Fonts.body(14))
+                                .foregroundStyle(Theme.Colors.ink)
+                            Spacer()
+                            Text(extra.total.formatted(.currency(code: "EUR")))
+                                .font(Theme.Fonts.body(14))
+                                .foregroundStyle(Theme.Colors.ink)
+                        }
+                    }
                     if includesDelivery {
                         HStack {
                             Text("Livraison")
@@ -223,7 +277,7 @@ struct NewReservationView: View {
                             .font(Theme.Fonts.body(16, weight: .bold))
                             .foregroundStyle(Theme.Colors.primaryStrong)
                     }
-                    Text("Cette demande est enregistrée sur votre appareil. Ker Vélo Brière vous recontactera pour la confirmer.")
+                    Text("Cette demande est enregistrée sur votre appareil. Mar'o Vélo vous recontactera pour la confirmer.")
                         .font(Theme.Fonts.body(12))
                         .foregroundStyle(Theme.Colors.inkSoft)
                         .padding(.top, Theme.Spacing.xs)
@@ -465,6 +519,7 @@ struct NewReservationView: View {
             quantity: quantity,
             pricingLabel: selectedPricingOption?.label ?? "",
             pricePerUnit: selectedPricingOption?.price ?? 0,
+            extras: selectedExtras,
             includesDelivery: includesDelivery,
             deliveryFee: bike.deliveryFee,
             totalPrice: totalPrice,

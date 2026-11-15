@@ -1,4 +1,4 @@
-/* Vélo Brière — application web
+/* Mar'o Vélo — application web
    Couleurs et rayons repris de la charte graphique (v1.0). */
 
 :root {
@@ -386,6 +386,7 @@ h2 { font: 700 clamp(18px, 2.2vw, 21px)/1.25 var(--font-display); margin: 0 0 10
 .price-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; gap: 12px; }
 .price-row + .price-row { border-top: 1px solid var(--line); }
 .price-row .label { font-size: 14px; }
+.price-row .price-schedule { font-size: 12px; color: var(--ink-soft); }
 .price-row .amount { font: 600 14px/1 var(--font-mono); color: var(--primary-strong); font-variant-numeric: tabular-nums; }
 .fine-print { font-size: 12px; color: var(--ink-soft); line-height: 1.55; margin: 10px 0 0; }
 

@@ -35,6 +35,9 @@ final class InvoiceStore: ObservableObject {
                 unitPrice: reservation.pricePerUnit
             )
         ]
+        for extra in reservation.extras ?? [] {
+            lines.append(.init(id: extra.id, label: "\(extra.label) (par jour et par vélo)", quantity: extra.quantity, unitPrice: extra.unitPrice))
+        }
         if reservation.includesDelivery {
             lines.append(.init(id: "livraison", label: "Livraison à domicile", quantity: 1, unitPrice: reservation.deliveryFee))
         }
