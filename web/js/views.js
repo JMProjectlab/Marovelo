@@ -902,6 +902,15 @@ VB.ICONS = {
 
 
 
+/* Formes décoratives posées sur les cartes de l'accueil. Elles débordent du
+   cadre, comme chez le modèle : c'est ce débord qui fait le style. */
+VB.DECOS = {
+  soleilPointu: `<svg viewBox="0 0 100 100" fill="#FFFF80" aria-hidden="true"><path d="M50 2l7 22 15-18-4 23 21-11-14 19 23 1-21 9 19 13-23-4 12 20-19-14 1 23-9-21-13 19 4-23-20 12 14-19-23-1 21-9-19-13 23 4-12-20 19 14-1-23z"/></svg>`,
+  soleilSouple: `<svg viewBox="0 0 100 100" fill="#DCF9F1" aria-hidden="true"><g><circle cx="50" cy="50" r="17"/><path d="M50 30q4-22 22-27-10 16-8 29zM70 40q20-10 36 2-19 1-28 11zM72 60q19 9 19 28-12-15-26-16zM58 73q10 19 1 34-3-18-15-25zM40 72q-11 18-30 18 15-10 17-24zM30 57q-20 3-29-14 16 8 29 2zM32 41q-15-14-9-32 4 18 17 24z"/></g></svg>`,
+  soleilAjoure: `<svg viewBox="0 0 100 100" fill="none" stroke="#FFFF80" stroke-width="7" aria-hidden="true"><circle cx="50" cy="50" r="26"/><g fill="#FFFF80" stroke="none"><circle cx="50" cy="13" r="9"/><circle cx="76" cy="24" r="9"/><circle cx="87" cy="50" r="9"/><circle cx="76" cy="76" r="9"/><circle cx="50" cy="87" r="9"/><circle cx="24" cy="76" r="9"/><circle cx="13" cy="50" r="9"/><circle cx="24" cy="24" r="9"/></g></svg>`,
+  fleur: `<svg viewBox="0 0 100 100" fill="#ACFFB4" aria-hidden="true"><g><ellipse cx="50" cy="22" rx="16" ry="21"/><ellipse cx="78" cy="50" rx="21" ry="16"/><ellipse cx="50" cy="78" rx="16" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="16"/><ellipse cx="29" cy="29" rx="14" ry="18" transform="rotate(-45 29 29)"/><ellipse cx="71" cy="71" rx="14" ry="18" transform="rotate(-45 71 71)"/></g><ellipse cx="50" cy="50" rx="11" ry="8" fill="#FDF9F6"/></svg>`
+};
+
 VB.viewHome = () => {
   const account = VB.Accounts.current();
   const avail = VB.availableOn(new Date());
@@ -912,6 +921,9 @@ VB.viewHome = () => {
     {
       nav: 'catalog',
       icon: VB.ICONS.bike,
+      image: 'assets/home/velos.jpg',
+      imageAlt: 'Deux vélos à assistance électrique sur un chemin, au bord du marais',
+      deco: VB.DECOS.soleilPointu,
       title: 'Vélos',
       desc: `Deux tailles : S/M et L/XL. Tarifs et réservation.`,
       meta: `<span class="avail-pill ${level}"><i></i>${avail}/${VB.BIKE.totalUnits} disponibles</span>`,
@@ -920,6 +932,9 @@ VB.viewHome = () => {
     {
       nav: 'reservations',
       icon: VB.ICONS.calendar,
+      image: 'assets/home/briere.jpg',
+      imageAlt: 'Une barque sur le marais, le village en arrière-plan',
+      deco: VB.DECOS.soleilSouple,
       title: 'Mes réservations',
       desc: 'Vos locations, vos factures et vos avoirs.',
       meta: mine > 0
@@ -930,6 +945,9 @@ VB.viewHome = () => {
       ? {
           nav: 'account',
           icon: VB.ICONS.person,
+          image: 'assets/bike-lxl.jpg',
+          imageAlt: 'Vélo à assistance électrique, taille L/XL',
+          deco: VB.DECOS.soleilAjoure,
           title: 'Mon compte',
           desc: 'Vos coordonnées et votre mot de passe.',
           meta: `<span class="home-muted">${VB.esc(account.email)}</span>`
@@ -937,6 +955,9 @@ VB.viewHome = () => {
       : {
           action: 'go-signin',
           icon: VB.ICONS.person,
+          image: 'assets/bike-lxl.jpg',
+          imageAlt: 'Vélo à assistance électrique, taille L/XL',
+          deco: VB.DECOS.soleilAjoure,
           title: 'Se connecter',
           desc: 'Retrouvez vos réservations passées.',
           meta: `<span class="home-muted">Ou créer un compte</span>`
@@ -944,6 +965,9 @@ VB.viewHome = () => {
     {
       nav: 'legal',
       icon: VB.ICONS.info,
+      image: 'assets/bike-sm.jpg',
+      imageAlt: 'Vélo à assistance électrique, taille S/M',
+      deco: VB.DECOS.fleur,
       title: 'Informations',
       desc: 'Mentions légales, confidentialité et CGL.',
       meta: `<span class="home-muted">Nous contacter</span>`
@@ -969,14 +993,20 @@ VB.viewHome = () => {
         </div>
       </div>
 
+      <p class="home-section-pill">Préparez votre balade</p>
+
       <div class="home-grid">
         ${entries.map(e => `
           <button class="home-card ${e.primary ? 'home-card-primary' : ''}"
                   ${e.nav ? `data-nav="${e.nav}"` : `data-action="${e.action}"`}>
+            <img class="home-card-photo" src="${e.image}" alt="${VB.esc(e.imageAlt)}" loading="lazy">
+            <span class="home-card-deco">${e.deco}</span>
             <span class="home-card-icon">${e.icon}</span>
-            <span class="home-card-title">${VB.esc(e.title)}</span>
-            <span class="home-card-desc">${VB.esc(e.desc)}</span>
-            <span class="home-card-meta">${e.meta}</span>
+            <span class="home-card-body">
+              <span class="home-card-title">${VB.esc(e.title)}</span>
+              <span class="home-card-desc">${VB.esc(e.desc)}</span>
+              <span class="home-card-meta">${e.meta}</span>
+            </span>
           </button>`).join('')}
       </div>
 

@@ -1019,59 +1019,151 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   :root:not([data-theme="light"]) .home-tagline { color: var(--ink); background: rgba(255, 255, 255, .1); }
 }
 
-.home-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
+.home-section-pill {
+  display: inline-block;
+  margin: 0 0 20px;
+  padding: 11px 22px;
+  border-radius: var(--radius-control);
+  background: var(--primary);
+  color: var(--on-primary);
+  font: 600 14px/1 var(--font-body);
 }
-@media (min-width: 560px) { .home-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 980px) { .home-grid { grid-template-columns: repeat(4, 1fr); } }
 
-.home-card {
+/* Sous 620 px, deux colonnes donneraient des cartes de 175 px, trop
+   étroites pour leur texte : la rangée devient un carrousel qui défile,
+   et chaque carte garde une largeur lisible. */
+.home-grid {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 7px;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Sans cela, l'accroche du carrousel ignore le retrait et colle la
+     première carte au bord de l'écran. */
+  scroll-padding-inline: clamp(16px, 4vw, 32px);
+  scrollbar-width: none;
+  margin: 0 calc(-1 * clamp(16px, 4vw, 32px));
+  padding: 4px clamp(16px, 4vw, 32px);
+}
+.home-grid::-webkit-scrollbar { display: none; }
+.home-grid > .home-card {
+  flex: 0 0 70%;
+  max-width: 300px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 620px) {
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+  .home-grid > .home-card { flex: initial; max-width: none; }
+}
+@media (min-width: 900px) { .home-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+
+/* Une carte de rubrique est une photo au format portrait, le texte posé
+   dessus. Le voile sombre n'est pas un effet : c'est lui qui garantit le
+   contraste du texte blanc, quelle que soit la photo mise à la place. */
+.home-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--primary);
+  cursor: pointer;
   text-align: left;
   font: inherit;
-  color: inherit;
-  cursor: pointer;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  padding: 26px;
-  transition: box-shadow .18s, transform .18s;
+  color: #FFFFFF;
+  transition: box-shadow .2s, transform .2s;
 }
-.home-card:hover { box-shadow: 0 8px 20px rgba(var(--shadow), .18); transform: translateY(-3px); }
-@media (prefers-reduced-motion: reduce) { .home-card:hover { transform: none; } }
+.home-card:hover { box-shadow: 0 12px 28px rgba(var(--shadow), .26); transform: translateY(-4px); }
+.home-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(0, 27, 28, .92) 0%,
+    rgba(0, 27, 28, .62) 32%,
+    rgba(0, 27, 28, .12) 58%,
+    rgba(0, 27, 28, 0) 74%);
+}
 
-.home-card-primary { background: var(--primary); border-color: var(--primary); }
-.home-card-primary .home-card-title { color: var(--on-primary); }
-.home-card-primary .home-card-desc { color: color-mix(in srgb, var(--on-primary) 72%, transparent); }
-.home-card-primary .avail-pill { background: color-mix(in srgb, var(--on-primary) 16%, transparent); color: var(--on-primary); }
-.home-card-primary .avail-pill i { background: var(--on-primary); }
+.home-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .45s ease;
+}
+.home-card:hover .home-card-photo { transform: scale(1.05); }
+@media (prefers-reduced-motion: reduce) {
+  .home-card:hover { transform: none; }
+  .home-card:hover .home-card-photo { transform: none; }
+}
+
+/* La forme déborde du cadre : c'est ce débord qui fait le style. */
+.home-card-deco {
+  position: absolute;
+  top: -18px;
+  right: -16px;
+  z-index: 1;
+  width: 104px;
+  height: 104px;
+  pointer-events: none;
+}
+.home-card-deco svg { width: 100%; height: 100%; display: block; }
 
 .home-card-icon {
-  width: 46px; height: 46px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  width: 42px; height: 42px;
   border-radius: 14px;
-  background: var(--mint-soft);
-  color: var(--sage);
+  background: rgba(0, 27, 28, .45);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
   display: grid; place-items: center;
-  margin-bottom: 12px;
+  margin: 0;
 }
-.home-card-icon svg { width: 22px; height: 22px; display: block; }
-.home-card-primary .home-card-icon { background: var(--on-primary); color: var(--primary); }
-.home-card-title { font: 700 18px/1.25 var(--font-display); color: var(--ink); letter-spacing: -.02em; }
-.home-card-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
-.home-card-meta { margin-top: 12px; }
-.home-count {
-  display: inline-block; padding: 7px 14px; border-radius: var(--radius-control);
-  background: var(--mint-soft);
-  color: var(--sage);
-  font: 600 12.5px/1 var(--font-body);
+.home-card-icon svg { width: 21px; height: 21px; display: block; }
+.home-card-primary .home-card-icon { background: var(--on-primary); color: #012A2B; }
+
+.home-card-body {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: clamp(16px, 1.8vw, 22px);
 }
-.home-muted { font-size: 13px; color: var(--ink-soft); }
-.home-card-primary .home-muted { color: color-mix(in srgb, var(--on-primary) 60%, transparent); }
+.home-card-title {
+  font: 700 clamp(19px, 1.9vw, 25px)/1.08 var(--font-display);
+  letter-spacing: -.035em;
+  color: #FFFFFF;
+}
+.home-card-desc { font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, .78); }
+.home-card-meta { margin-top: 10px; }
+
+/* Sur la photo, les pastilles passent en verre dépoli. */
+.home-card .avail-pill,
+.home-card .home-count {
+  background: rgba(0, 27, 28, .55);
+  backdrop-filter: blur(10px);
+  color: #FFFFFF;
+}
+.home-card .avail-pill.good i { background: #ACFFB4; }
+.home-card .home-muted { color: rgba(255, 255, 255, .86); }
 
 .home-contact {
   text-align: center;
