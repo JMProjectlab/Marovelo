@@ -1,4 +1,4 @@
-// Configuration de l'application web Firebase de Mar'o Vélo.
+// Configuration de l'application web Firebase de Mar'O Velo.
 // Source : console Firebase → Paramètres du projet → Vos applications → Web.
 //
 // Renseignée le 11/10/2026 : le site est désormais branché sur le projet

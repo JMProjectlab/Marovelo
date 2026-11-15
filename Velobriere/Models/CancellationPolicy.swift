@@ -1,6 +1,6 @@
 import Foundation
 
-/// Conditions d'annulation appliquées par Mar'o Vélo.
+/// Conditions d'annulation appliquées par Mar'O Velo.
 ///
 /// - Plus de 2 jours avant le départ : remboursement intégral.
 /// - De 2 jours à la veille incluse, et le jour du départ : 50 % retenus.
@@ -52,7 +52,7 @@ enum CancellationPolicy {
         tier(startDate: startDate, from: now) != .free
     }
 
-    /// Montant retenu par Mar'o Vélo en cas d'annulation.
+    /// Montant retenu par Mar'O Velo en cas d'annulation.
     static func fee(amount: Double, startDate: Date, from now: Date = .now) -> Double {
         (amount * tier(startDate: startDate, from: now).feeRatio).roundedToCents
     }

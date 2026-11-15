@@ -4,7 +4,7 @@ import Foundation
 ///
 /// ⚠️ Ces documents sont des **squelettes** : ils posent la structure et les
 /// clauses usuelles, mais chaque `[À COMPLÉTER : …]` doit être renseigné par
-/// Mar'o Vélo, et l'ensemble doit être relu par un professionnel du droit
+/// Mar'O Velo, et l'ensemble doit être relu par un professionnel du droit
 /// avant publication sur l'App Store.
 ///
 /// L'adresse et le téléphone pré-remplis proviennent de la charte graphique
@@ -25,7 +25,7 @@ enum LegalContent {
                 id: "editeur",
                 heading: "Éditeur de l'application",
                 body: """
-                Mar'o Vélo — location de vélos électriques
+                Mar'O Velo — location de vélos électriques
                 135 Kermouraud, 44410 Saint-Lyphard, France
                 Téléphone : 06 07 34 37 97
 
@@ -52,7 +52,7 @@ enum LegalContent {
                 id: "propriete",
                 heading: "Propriété intellectuelle",
                 body: """
-                La marque Mar'o Vélo, son logo, sa charte graphique ainsi que les contenus de l'application sont protégés. Toute reproduction, même partielle, sans autorisation écrite préalable est interdite.
+                La marque Mar'O Velo, son logo, sa charte graphique ainsi que les contenus de l'application sont protégés. Toute reproduction, même partielle, sans autorisation écrite préalable est interdite.
 
                 Les marques et visuels des vélos présentés appartiennent à leurs titulaires respectifs.
                 """
@@ -81,7 +81,7 @@ enum LegalContent {
                 id: "responsable",
                 heading: "Responsable du traitement",
                 body: """
-                Mar'o Vélo, 135 Kermouraud, 44410 Saint-Lyphard.
+                Mar'O Velo, 135 Kermouraud, 44410 Saint-Lyphard.
                 Contact : [À COMPLÉTER : adresse e-mail dédiée aux demandes RGPD]
 
                 Compte tenu de la taille de l'activité, aucun délégué à la protection des données (DPO) n'a été désigné.
@@ -123,7 +123,7 @@ enum LegalContent {
                 id: "destinataires",
                 heading: "Destinataires",
                 body: """
-                Vos données sont destinées aux seules personnes habilitées de Mar'o Vélo chargées de la gestion des locations. Elles ne sont ni vendues, ni cédées, ni transmises à des tiers à des fins commerciales.
+                Vos données sont destinées aux seules personnes habilitées de Mar'O Velo chargées de la gestion des locations. Elles ne sont ni vendues, ni cédées, ni transmises à des tiers à des fins commerciales.
 
                 [À COMPLÉTER : lister les éventuels sous-traitants — outil d'e-mailing, prestataire de paiement, logiciel de gestion.]
                 """
@@ -172,7 +172,7 @@ enum LegalContent {
                 id: "objet",
                 heading: "1. Objet",
                 body: """
-                Les présentes conditions régissent la location de vélos à assistance électrique proposée par Mar'o Vélo via l'application, à l'exclusion de toute autre condition.
+                Les présentes conditions régissent la location de vélos à assistance électrique proposée par Mar'O Velo via l'application, à l'exclusion de toute autre condition.
 
                 Toute réservation implique l'acceptation sans réserve des présentes conditions.
                 """
@@ -181,9 +181,9 @@ enum LegalContent {
                 id: "reservation",
                 heading: "2. Réservation",
                 body: """
-                Une demande effectuée dans l'application ne vaut pas confirmation. Mar'o Vélo vous recontacte pour valider la disponibilité et arrêter les modalités de retrait ou de livraison.
+                Une demande effectuée dans l'application ne vaut pas confirmation. Mar'O Velo vous recontacte pour valider la disponibilité et arrêter les modalités de retrait ou de livraison.
 
-                Le contrat est formé à la confirmation expresse par Mar'o Vélo.
+                Le contrat est formé à la confirmation expresse par Mar'O Velo.
 
                 Âge minimum du locataire : [À COMPLÉTER : âge requis]
                 Pièces à présenter au retrait : [À COMPLÉTER : pièce d'identité, justificatif de domicile…]
@@ -246,7 +246,7 @@ enum LegalContent {
                 id: "assurance",
                 heading: "7. Assurance",
                 body: """
-                Mar'o Vélo est couvert par une assurance responsabilité civile professionnelle :
+                Mar'O Velo est couvert par une assurance responsabilité civile professionnelle :
                 [À COMPLÉTER : nom de l'assureur, numéro de contrat et étendue géographique.]
 
                 [À COMPLÉTER : préciser ce qui reste à la charge du locataire et si sa propre responsabilité civile est requise.]
@@ -289,7 +289,7 @@ enum LegalContent {
                 Toute réclamation peut être adressée à [À COMPLÉTER : adresse e-mail de contact].
 
                 Conformément au Code de la consommation, le client peut recourir gratuitement à un médiateur de la consommation :
-                [À COMPLÉTER : nom, adresse et site du médiateur auquel Mar'o Vélo adhère — l'adhésion à un dispositif de médiation est obligatoire pour les professionnels vendant à des particuliers.]
+                [À COMPLÉTER : nom, adresse et site du médiateur auquel Mar'O Velo adhère — l'adhésion à un dispositif de médiation est obligatoire pour les professionnels vendant à des particuliers.]
 
                 Les présentes conditions sont soumises au droit français.
                 """

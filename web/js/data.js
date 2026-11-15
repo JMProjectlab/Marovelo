@@ -62,7 +62,7 @@ VB.COUNTRY_CODES = [
 VB.DEFAULT_COUNTRY_CODE = '+33';
 
 VB.CONTACT = {
-  name: "Mar'o Vélo",
+  name: "Mar'O Velo",
   address: '135 Kermouraud',
   postal: '44410 Saint-Lyphard',
   phone: '06 07 34 37 97',
@@ -70,7 +70,7 @@ VB.CONTACT = {
 };
 
 /* ⚠️ Squelettes juridiques : chaque « [À COMPLÉTER : … ] » doit être renseigné
-   par Mar'o Vélo, puis l'ensemble relu par un professionnel du droit. */
+   par Mar'O Velo, puis l'ensemble relu par un professionnel du droit. */
 VB.PLACEHOLDER_MARKER = '[À COMPLÉTER';
 VB.VAT_NOTE = "[À COMPLÉTER : régime de TVA — taux applicable, ou mention « TVA non applicable, art. 293 B du CGI » en franchise en base]";
 VB.SELLER_NOTE = "[À COMPLÉTER : forme juridique, SIRET, RCS et n° de TVA intracommunautaire]";
@@ -83,7 +83,7 @@ VB.LEGAL_DOCS = [
     lastUpdated: '[À COMPLÉTER : date de mise à jour]',
     sections: [
       { heading: "Éditeur de l'application", body:
-`Mar'o Vélo — location de vélos électriques
+`Mar'O Velo — location de vélos électriques
 135 Kermouraud, 44410 Saint-Lyphard, France
 Téléphone : 06 07 34 37 97
 
@@ -100,7 +100,7 @@ Directeur de la publication : [À COMPLÉTER : nom et prénom]` },
 Lorsqu'un service de réception des réservations sera mis en place, l'hébergeur sera :
 [À COMPLÉTER : raison sociale, adresse et téléphone de l'hébergeur]` },
       { heading: 'Propriété intellectuelle', body:
-`La marque Mar'o Vélo, son logo, sa charte graphique ainsi que les contenus de l'application sont protégés. Toute reproduction, même partielle, sans autorisation écrite préalable est interdite.
+`La marque Mar'O Velo, son logo, sa charte graphique ainsi que les contenus de l'application sont protégés. Toute reproduction, même partielle, sans autorisation écrite préalable est interdite.
 
 Les marques et visuels des vélos présentés appartiennent à leurs titulaires respectifs.` },
       { heading: 'Nous contacter', body:
@@ -116,7 +116,7 @@ E-mail : [À COMPLÉTER : adresse de contact]` }
     lastUpdated: '[À COMPLÉTER : date de mise à jour]',
     sections: [
       { heading: 'Responsable du traitement', body:
-`Mar'o Vélo, 135 Kermouraud, 44410 Saint-Lyphard.
+`Mar'O Velo, 135 Kermouraud, 44410 Saint-Lyphard.
 Contact : [À COMPLÉTER : adresse e-mail dédiée aux demandes RGPD]
 
 Compte tenu de la taille de l'activité, aucun délégué à la protection des données (DPO) n'a été désigné.` },
@@ -138,7 +138,7 @@ La base légale est l'exécution de mesures précontractuelles et du contrat de 
 
 [À COMPLÉTER : à réécrire dès qu'un service d'envoi des réservations sera mis en place — préciser le destinataire, l'hébergeur et le lieu d'hébergement des données.]` },
       { heading: 'Destinataires', body:
-`Vos données sont destinées aux seules personnes habilitées de Mar'o Vélo chargées de la gestion des locations. Elles ne sont ni vendues, ni cédées, ni transmises à des tiers à des fins commerciales.
+`Vos données sont destinées aux seules personnes habilitées de Mar'O Velo chargées de la gestion des locations. Elles ne sont ni vendues, ni cédées, ni transmises à des tiers à des fins commerciales.
 
 [À COMPLÉTER : lister les éventuels sous-traitants — outil d'e-mailing, prestataire de paiement, logiciel de gestion.]` },
       { heading: 'Durée de conservation', body:
@@ -160,11 +160,11 @@ Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire un
     lastUpdated: '[À COMPLÉTER : date de mise à jour]',
     sections: [
       { heading: '1. Objet', body:
-`Les présentes conditions régissent la location de vélos à assistance électrique proposée par Mar'o Vélo, à l'exclusion de toute autre condition.
+`Les présentes conditions régissent la location de vélos à assistance électrique proposée par Mar'O Velo, à l'exclusion de toute autre condition.
 
 Toute réservation implique l'acceptation sans réserve des présentes conditions.` },
       { heading: '2. Réservation', body:
-`Le contrat est formé au paiement de la réservation. Mar'o Vélo vous recontacte pour arrêter les modalités de retrait ou de livraison.
+`Le contrat est formé au paiement de la réservation. Mar'O Velo vous recontacte pour arrêter les modalités de retrait ou de livraison.
 
 Âge minimum du locataire : [À COMPLÉTER : âge requis]
 Pièces à présenter au retrait : [À COMPLÉTER : pièce d'identité, justificatif de domicile…]` },
@@ -200,7 +200,7 @@ Le locataire est responsable du vélo et des accessoires pendant toute la durée
 [À COMPLÉTER : conditions de prise en charge en cas de vol — dépôt de plainte, franchise applicable, restitution de l'antivol.]
 [À COMPLÉTER : conditions de facturation en cas de casse ou de détérioration.]` },
       { heading: '7. Assurance', body:
-`Mar'o Vélo est couvert par une assurance responsabilité civile professionnelle :
+`Mar'O Velo est couvert par une assurance responsabilité civile professionnelle :
 [À COMPLÉTER : nom de l'assureur, numéro de contrat et étendue géographique.]
 
 [À COMPLÉTER : préciser ce qui reste à la charge du locataire et si sa propre responsabilité civile est requise.]` },
@@ -223,7 +223,7 @@ Le remboursement est effectué sur le moyen de paiement d'origine et donne lieu 
 `Toute réclamation peut être adressée à [À COMPLÉTER : adresse e-mail de contact].
 
 Conformément au Code de la consommation, le client peut recourir gratuitement à un médiateur de la consommation :
-[À COMPLÉTER : nom, adresse et site du médiateur auquel Mar'o Vélo adhère.]
+[À COMPLÉTER : nom, adresse et site du médiateur auquel Mar'O Velo adhère.]
 
 Les présentes conditions sont soumises au droit français.` }
     ]

@@ -1,4 +1,4 @@
-# Mar'o Vélo — réservation de vélos électriques
+# Mar'O Velo — réservation de vélos électriques
 
 Deux applications, mêmes fonctionnalités et mêmes règles métier :
 
@@ -19,7 +19,7 @@ les deux applications ne la lit — c'est à nous de nous y tenir.
 
 ## App iOS de réservation
 
-App iOS (SwiftUI) pour réserver un vélo auprès de **Mar'o Vélo**, location de vélos
+App iOS (SwiftUI) pour réserver un vélo auprès de **Mar'O Velo**, location de vélos
 électriques à Saint-Lyphard, au cœur du Parc naturel régional de Brière.
 
 ## Ouvrir le projet

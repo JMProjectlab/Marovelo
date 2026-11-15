@@ -2,7 +2,7 @@ import Foundation
 
 /// Un document légal (mentions légales, politique de confidentialité, CGL).
 ///
-/// Les passages que Mar'o Vélo doit renseigner sont balisés avec
+/// Les passages que Mar'O Velo doit renseigner sont balisés avec
 /// `LegalDocument.placeholderMarker` : l'app les met en évidence pour éviter
 /// qu'un document incomplet parte en production.
 struct LegalDocument: Identifiable, Hashable {
