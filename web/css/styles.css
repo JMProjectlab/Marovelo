@@ -967,11 +967,22 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
    repasse donc en vertical. */
 @media (max-width: 700px) {
   .home-hero::before {
-    background: linear-gradient(to top,
-      rgba(0, 27, 28, .93) 8%,
-      rgba(0, 27, 28, .72) 52%,
-      rgba(0, 27, 28, .5) 100%);
+    /* Le voile est noir, pas teal : un voile teinté sur toute la hauteur
+       tire la photo vers le gris-vert et lui enlève ses couleurs. Le noir
+       assombrit sans déteindre. Et il s'allège vers le haut, là où il n'y a
+       que l'en-tête à protéger. */
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, .56) 0%, rgba(0, 0, 0, 0) 215px),
+      linear-gradient(to top,
+        rgba(0, 0, 0, .82) 0%,
+        rgba(0, 0, 0, .62) 34%,
+        rgba(0, 0, 0, .34) 66%,
+        rgba(0, 0, 0, .22) 100%);
   }
+  /* Le voile allégé laisse passer des zones claires sous le texte : une
+     ombre portée discrète garantit la lisibilité sans réassombrir tout. */
+  .home-hero-text .home-title,
+  .home-hero-text .home-lede { text-shadow: 0 1px 14px rgba(0, 0, 0, .55); }
 }
 
 /* Sur l'accueil, la photo remonte derrière l'en-tête : le bandeau passe
@@ -1005,6 +1016,10 @@ body:has(.home) .home-hero {
 }
 
 /* Sur la photo, les libellés de l'en-tête passent en clair. */
+body:has(.home) .brand-name,
+body:has(.home) .brand-tag,
+body:has(.home) .nav-link { text-shadow: 0 1px 10px rgba(0, 0, 0, .5); }
+body:has(.home) .nav-link[aria-current="page"] { text-shadow: none; }
 body:has(.home) .brand-name { color: #FFFFFF; }
 body:has(.home) .brand-tag { color: rgba(255, 255, 255, .82); }
 body:has(.home) .nav-link { color: rgba(255, 255, 255, .88); }
