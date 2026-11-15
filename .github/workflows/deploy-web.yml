@@ -43,7 +43,7 @@ jobs:
                    web/js/data.js web/js/domain.js web/js/store.js web/js/views.js \
                    web/js/accounts.js web/js/remote.js \
                    web/assets/logo-mark.svg web/assets/logo.jpg \
-                   web/assets/hero-cyclistes.jpg \
+                   web/assets/hero-cyclistes.webp \
                    web/assets/home/velos.jpg web/assets/home/briere.jpg \
                    web/assets/home/cyclistes.jpg \
                    web/assets/bike-sm.jpg web/assets/bike-lxl.jpg; do
