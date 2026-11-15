@@ -932,8 +932,9 @@ VB.viewHome = () => {
     {
       nav: 'reservations',
       icon: VB.ICONS.calendar,
-      image: 'assets/home/briere.jpg',
-      imageAlt: 'Une barque sur le marais, le village en arrière-plan',
+      image: 'assets/home/cyclistes.jpg',
+      imageAlt: 'Deux cyclistes sur un chemin de halage, un moulin au loin',
+      imagePos: '22% center',
       deco: VB.DECOS.soleilSouple,
       title: 'Mes réservations',
       desc: 'Vos locations, vos factures et vos avoirs.',
@@ -965,8 +966,8 @@ VB.viewHome = () => {
     {
       nav: 'legal',
       icon: VB.ICONS.info,
-      image: 'assets/bike-sm.jpg',
-      imageAlt: 'Vélo à assistance électrique, taille S/M',
+      image: 'assets/home/briere.jpg',
+      imageAlt: 'Une barque sur le marais, le village en arrière-plan',
       deco: VB.DECOS.fleur,
       title: 'Informations',
       desc: 'Mentions légales, confidentialité et CGL.',
@@ -988,9 +989,6 @@ VB.viewHome = () => {
             <a class="btn btn-ghost" href="${VB.CONTACT.phoneHref}">${VB.esc(VB.CONTACT.phone)}</a>
           </div>
         </div>
-        <div class="home-logo">
-          <img src="assets/logo.jpg" alt="Un vélo électrique au bord des marais de Brière" width="760" height="760">
-        </div>
       </div>
 
       <p class="home-section-pill">Préparez votre balade</p>
@@ -999,7 +997,8 @@ VB.viewHome = () => {
         ${entries.map(e => `
           <button class="home-card ${e.primary ? 'home-card-primary' : ''}"
                   ${e.nav ? `data-nav="${e.nav}"` : `data-action="${e.action}"`}>
-            <img class="home-card-photo" src="${e.image}" alt="${VB.esc(e.imageAlt)}" loading="lazy">
+            <img class="home-card-photo" src="${e.image}" alt="${VB.esc(e.imageAlt)}" loading="lazy"
+                 ${e.imagePos ? `style="object-position:${e.imagePos}"` : ''}>
             <span class="home-card-deco">${e.deco}</span>
             <span class="home-card-icon">${e.icon}</span>
             <span class="home-card-body">

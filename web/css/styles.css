@@ -929,21 +929,54 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
 
 /* Le héros du modèle : un grand panneau menthe en dégradé, un titre
    bas-de-casse très serré, la photo à droite. */
+/* Le bandeau d'accueil : une photo de Brière en fond, le texte posé
+   dessus. Le dégradé sombre vient de la gauche, là où est le texte, et
+   laisse la droite de la photo respirer. */
 .home-hero {
-  background: var(--gradient-mint);
+  position: relative;
+  overflow: hidden;
   border-radius: 32px;
-  padding: clamp(28px, 5vw, 56px);
   margin-bottom: clamp(28px, 5vw, 48px);
-  display: grid;
-  gap: clamp(24px, 4vw, 48px);
-  align-items: center;
-  text-align: left;
+  padding: clamp(32px, 5vw, 64px);
+  min-height: clamp(300px, 32vw, 400px);
+  display: flex;
+  align-items: flex-end;
+  background-image: url("../assets/hero-briere.jpg");
+  background-size: cover;
+  background-position: center 46%;
+  background-color: #012A2B;
 }
-@media (min-width: 880px) {
-  .home-hero { grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); }
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(100deg,
+      rgba(0, 27, 28, .88) 0%,
+      rgba(0, 27, 28, .74) 38%,
+      rgba(0, 27, 28, .34) 68%,
+      rgba(0, 27, 28, .12) 100%),
+    linear-gradient(to top, rgba(0, 27, 28, .45) 0%, rgba(0, 27, 28, 0) 45%);
 }
 
-.home-hero-text { min-width: 0; }
+/* Le dégradé latéral est calculé pour un bandeau large. Sur une colonne
+   étroite, le texte retombe sur la partie claire de la photo : le voile
+   repasse donc en vertical. */
+@media (max-width: 700px) {
+  .home-hero::before {
+    background: linear-gradient(to top,
+      rgba(0, 27, 28, .93) 8%,
+      rgba(0, 27, 28, .72) 52%,
+      rgba(0, 27, 28, .5) 100%);
+  }
+}
+
+.home-hero-text {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 740px;
+}
 
 .home-hero-actions {
   display: flex;
@@ -952,71 +985,49 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   margin-top: 28px;
 }
 .home-hero-actions .btn { flex: 0 1 auto; }
+/* Sur la photo, le bouton principal passe en crème : un bouton teal
+   sombre s'y effacerait. */
+.home-hero-actions .btn-primary { background: #FDF9F6; color: #012A2B; }
+.home-hero-actions .btn-primary:hover:not(:disabled) { background: #FFFFFF; filter: none; }
+.btn-ghost {
+  background: rgba(255, 255, 255, .14);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .55);
+  color: #FFFFFF;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  backdrop-filter: blur(6px);
+}
+.btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, .26); }
 @media (max-width: 480px) {
   .home-hero-actions { flex-direction: column; align-items: stretch; }
   .home-hero-actions .btn { justify-content: center; text-align: center; }
 }
-/* Le second bouton du héros est un contour clair sur le panneau menthe. */
-.btn-ghost {
-  background: rgba(255, 255, 255, .62);
-  color: #001B1C;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-}
-.btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, .85); }
-:root[data-theme="dark"] .btn-ghost { background: rgba(255, 255, 255, .12); color: var(--ink); }
-:root[data-theme="dark"] .btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, .2); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .btn-ghost { background: rgba(255, 255, 255, .12); color: var(--ink); }
-  :root:not([data-theme="light"]) .btn-ghost:hover:not(:disabled) { background: rgba(255, 255, 255, .2); }
-}
-
-.home-logo {
-  width: 100%;
-  max-width: 440px;
-  margin: 0 0 0 auto;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 18px 40px -18px rgba(0, 27, 28, .45);
-}
-.home-logo img { width: 100%; height: auto; display: block; }
 
 .home-tagline {
   display: inline-block;
   font: 600 12.5px/1 var(--font-body);
-  letter-spacing: .02em;
-  text-transform: none;
-  color: #001B1C;
-  background: rgba(255, 255, 255, .62);
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, .16);
+  backdrop-filter: blur(8px);
   border-radius: var(--radius-control);
-  padding: 8px 16px;
+  padding: 9px 17px;
   margin: 0 0 20px;
 }
 .home-title {
-  font: 700 clamp(36px, 7vw, 68px)/.98 var(--font-display);
+  font: 700 clamp(32px, 5.2vw, 54px)/1 var(--font-display);
   letter-spacing: -.045em;
   text-transform: lowercase;
-  color: #001B1C;
+  color: #FFFFFF;
   margin: 0 0 18px;
   text-wrap: balance;
 }
 .home-lede {
   font-size: clamp(15.5px, 1.8vw, 18px);
-  color: #0B3A33;
+  color: rgba(255, 255, 255, .88);
   margin: 0;
-  max-width: 48ch;
+  max-width: 42ch;
   line-height: 1.6;
-}
-
-/* En sombre, le panneau devient sourd : le texte doit repasser en clair. */
-:root[data-theme="dark"] .home-title,
-:root[data-theme="dark"] .home-lede { color: var(--ink); }
-:root[data-theme="dark"] .home-tagline { color: var(--ink); background: rgba(255, 255, 255, .1); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .home-title,
-  :root:not([data-theme="light"]) .home-lede { color: var(--ink); }
-  :root:not([data-theme="light"]) .home-tagline { color: var(--ink); background: rgba(255, 255, 255, .1); }
 }
 
 .home-section-pill {
@@ -1096,6 +1107,7 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
 }
 
 .home-card-photo {
+  object-position: center;
   position: absolute;
   inset: 0;
   width: 100%;
