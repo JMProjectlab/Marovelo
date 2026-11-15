@@ -1,8 +1,13 @@
-// Configuration de l'application web Firebase de Ker Vélo Brière.
+// Configuration de l'application web Firebase de Mar'o Vélo.
 // Source : console Firebase → Paramètres du projet → Vos applications → Web.
 //
 // Renseignée le 11/10/2026 : le site est désormais branché sur le projet
 // `kervelobriere`. Les comptes sont réels et les réservations partagées.
+//
+// L'identifiant de projet garde l'ancien nom de l'enseigne et ne bouge pas : un
+// identifiant Firebase ne se renomme pas, ce n'est pas un nom de marque mais une
+// adresse, et personne d'autre que nous ne la voit. Le renommer coûterait une
+// migration des comptes et des réservations, pour rien.
 //
 // `estConfigure()` reste le garde-fou : si ces valeurs repassaient à
 // « REMPLACER », le site retomberait sur le mode local sans casser — c'est un

@@ -93,6 +93,9 @@ struct ReservationDetailView: View {
             row("Au", Self.dateFormatter.string(from: reservation.endDate))
             row("Formule", reservation.pricingLabel)
             row("Vélos", "\(reservation.quantity)")
+            ForEach(reservation.extras ?? []) { extra in
+                row(extra.label, "× \(extra.quantity)")
+            }
             if reservation.includesDelivery {
                 row("Livraison", "Incluse")
             }

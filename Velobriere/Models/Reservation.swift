@@ -1,5 +1,18 @@
 import Foundation
 
+/// Une option retenue sur une réservation, figée à l'enregistrement : le
+/// libellé et le prix unitaire sont recopiés pour que la facture reste lisible
+/// même si le tarif change ensuite.
+struct ReservationExtra: Identifiable, Codable, Hashable {
+    let id: String
+    let label: String
+    /// Nombre d'unités facturées = nombre de vélos × jours facturés.
+    let quantity: Int
+    let unitPrice: Double
+
+    var total: Double { Double(quantity) * unitPrice }
+}
+
 struct Reservation: Identifiable, Codable {
     enum Status: String, Codable, Hashable {
         case pending
@@ -21,6 +34,9 @@ struct Reservation: Identifiable, Codable {
     var quantity: Int
     var pricingLabel: String
     var pricePerUnit: Double
+    /// Options retenues (casque, panier). Optionnel pour rester compatible avec
+    /// les réservations enregistrées avant leur introduction.
+    var extras: [ReservationExtra]?
     var includesDelivery: Bool
     var deliveryFee: Double
     var totalPrice: Double

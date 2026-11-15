@@ -45,11 +45,11 @@ struct CatalogView: View {
                     )
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("KER VÉLO BRIÈRE")
+                    Text("MAR'O VÉLO")
                         .font(Theme.Fonts.display(14, weight: .bold))
                         .tracking(1)
                         .foregroundStyle(Theme.Colors.primaryStrong)
-                    Text("Location de vélos électriques")
+                    Text("Location de vélos électriques en Brière")
                         .font(Theme.Fonts.body(11))
                         .foregroundStyle(Theme.Colors.inkSoft)
                 }
