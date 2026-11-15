@@ -83,19 +83,19 @@
   /* Le geste de la marque : un bouton teal presque noir, un texte menthe. */
   --primary: #012A2B;
   --primary-strong: #004B3D;
-  --on-primary: #77F584;
+  --on-primary: #FDF9F6;
 
-  --mint: #ACFFB4;
-  --mint-soft: #D6FFDC;
-  --aqua: #B4F1DE;
-  --aqua-soft: #DCF9F1;
+  --mint: #CFE3D4;
+  --mint-soft: #E7F0E9;
+  --aqua: #CDE3DE;
+  --aqua-soft: #E8F2EF;
   --sage: #004B3D;
   --ok: #048A38;
   --sand: #FFB35A;
   --warning: #B30F0F;
   --warning-surface: #FFE8E8;
 
-  --gradient-mint: linear-gradient(255deg, #ACFFB4 6.5%, #B4F1DE 69.5%);
+  --gradient-mint: linear-gradient(255deg, #CFE3D4 6.5%, #CDE3DE 69.5%);
   --shadow: 89, 86, 83;
 
   --font-display: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -121,16 +121,16 @@
     --line: #0C3F38;
     --line-strong: #14544A;
 
-    --primary: #77F584;
-    --primary-strong: #ACFFB4;
+    --primary: #CFE3D4;
+    --primary-strong: #E7F0E9;
     --on-primary: #001B1C;
 
     --mint: #004B3D;
     --mint-soft: #06372F;
     --aqua: #0C3F38;
     --aqua-soft: #06372F;
-    --sage: #ACFFB4;
-    --ok: #77F584;
+    --sage: #CFE3D4;
+    --ok: #7FC79B;
     --sand: #FFB35A;
     --warning: #FF9A9A;
     --warning-surface: #3A1414;
@@ -149,16 +149,16 @@
   --line: #0C3F38;
   --line-strong: #14544A;
 
-  --primary: #77F584;
-  --primary-strong: #ACFFB4;
+  --primary: #CFE3D4;
+  --primary-strong: #E7F0E9;
   --on-primary: #001B1C;
 
   --mint: #004B3D;
   --mint-soft: #06372F;
   --aqua: #0C3F38;
   --aqua-soft: #06372F;
-  --sage: #ACFFB4;
-  --ok: #77F584;
+  --sage: #CFE3D4;
+  --ok: #7FC79B;
   --sand: #FFB35A;
   --warning: #FF9A9A;
   --warning-surface: #3A1414;
@@ -902,7 +902,7 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
 
 .demo-bar {
   background: #012A2B;
-  color: rgba(119, 245, 132, .82);
+  color: rgba(253, 249, 246, .78);
   border-bottom: none;
   font-size: 13px;
 }
@@ -912,16 +912,16 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   padding: 11px clamp(16px, 4vw, 32px);
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
 }
-.demo-bar strong { color: #77F584; font-weight: 600; }
+.demo-bar strong { color: #FDF9F6; font-weight: 600; }
 .demo-reset {
   margin-left: auto;
-  background: rgba(119, 245, 132, .14);
+  background: rgba(253, 249, 246, .16);
   border: none; border-radius: var(--radius-control);
   padding: 7px 15px; cursor: pointer;
-  font: 500 12.5px/1 var(--font-body); color: #77F584;
+  font: 500 12.5px/1 var(--font-body); color: #FDF9F6;
   transition: background .15s;
 }
-.demo-reset:hover { background: rgba(119, 245, 132, .26); }
+.demo-reset:hover { background: rgba(253, 249, 246, .28); }
 
 /* ---------- Page d'accueil ---------- */
 
@@ -1148,7 +1148,9 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   margin: 0;
 }
 .home-card-icon svg { width: 21px; height: 21px; display: block; }
-.home-card-primary .home-card-icon { background: var(--on-primary); color: #012A2B; }
+/* Indépendant du thème : en sombre, `--on-primary` est le teal, et la
+   pastille devenait sombre sur une photo sombre. */
+.home-card-primary .home-card-icon { background: #FDF9F6; color: #012A2B; }
 
 .home-card-body {
   position: absolute;
@@ -1174,7 +1176,7 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   backdrop-filter: blur(10px);
   color: #FFFFFF;
 }
-.home-card .avail-pill.good i { background: #ACFFB4; }
+.home-card .avail-pill.good i { background: #8FC9A3; }
 .home-card .home-muted { color: rgba(255, 255, 255, .86); }
 
 .home-contact {
