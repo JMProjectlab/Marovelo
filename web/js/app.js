@@ -569,21 +569,17 @@ VB.handleChangePassword = async () => {
 VB.THEME_KEY = 'velobriere-web-theme';
 
 VB.applyTheme = theme => {
-  if (theme === 'light' || theme === 'dark') document.documentElement.setAttribute('data-theme', theme);
-  else document.documentElement.removeAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
   const btn = document.getElementById('themeToggle');
   if (btn) {
-    const isDark = theme === 'dark'
-      || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = theme === 'dark';
     btn.textContent = isDark ? '☀' : '☾';
     btn.setAttribute('aria-label', isDark ? 'Passer en thème clair' : 'Passer en thème sombre');
   }
 };
 
 VB.toggleTheme = () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  const isDark = current === 'dark'
-    || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const next = isDark ? 'light' : 'dark';
   try { localStorage.setItem(VB.THEME_KEY, next); } catch (e) { /* stockage indisponible */ }
   VB.applyTheme(next);
@@ -762,7 +758,9 @@ VB.majBandeauDemo = () => {
 VB.boot = () => {
   let stored = null;
   try { stored = localStorage.getItem(VB.THEME_KEY); } catch (e) { /* stockage indisponible */ }
-  VB.applyTheme(stored);
+  // Par défaut le site est clair, même sur un système réglé en sombre : le
+  // thème sombre existe, mais il se choisit, il ne s'impose pas.
+  VB.applyTheme(stored === 'dark' ? 'dark' : 'light');
   VB.bootstrapData();
   VB.bindEvents();
   VB.render();
@@ -799,4 +797,21 @@ VB.boot = () => {
     .catch(e => console.warn('[VB] Firebase indisponible :', e));
 };
 
-document.addEventListener('DOMContentLoaded', VB.boot);
+/* La hauteur de l'en-tête varie : une ou deux rangées selon la largeur, et
+   le point de bascule dépend de la longueur des libellés. Le bandeau
+   d'accueil a besoin de la valeur réelle pour que son texte passe dessous,
+   donc on la mesure plutôt que de la deviner. */
+VB.suivreHauteurEntete = () => {
+  const entete = document.querySelector('.site-header');
+  if (!entete) return;
+  const poser = () => document.documentElement.style.setProperty(
+    '--hauteur-entete', Math.round(entete.getBoundingClientRect().height) + 'px');
+  poser();
+  if (window.ResizeObserver) new ResizeObserver(poser).observe(entete);
+  else window.addEventListener('resize', poser);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  VB.suivreHauteurEntete();
+  VB.boot();
+});
