@@ -953,13 +953,20 @@ VB.viewHome = () => {
   return `
     <div class="home">
       <div class="home-hero">
-        <div class="home-logo">
-          <img src="assets/logo.jpg" alt="Mar'o Vélo — vélo électrique au bord des marais de Brière" width="480" height="480">
+        <div class="home-hero-text">
+          <p class="home-tagline">Saint-Lyphard, au cœur de la Brière</p>
+          <h1 class="home-title">roulez. respirez. revenez.</h1>
+          <p class="home-lede">Des vélos à assistance électrique pour parcourir les marais, les villages
+          et les chemins de Brière. Antivol inclus, casque et panier en option, livraison possible dans
+          un rayon de ${VB.BIKE.deliveryRadiusKm} km.</p>
+          <div class="home-hero-actions">
+            <button class="btn btn-primary" data-nav="catalog" type="button">Réserver un vélo</button>
+            <a class="btn btn-ghost" href="${VB.CONTACT.phoneHref}">${VB.esc(VB.CONTACT.phone)}</a>
+          </div>
         </div>
-        <h1 class="home-title">MAR'O VÉLO</h1>
-        <p class="home-tagline">Location de vélos électriques en Brière</p>
-        <p class="home-lede">Balades électriques au cœur de la Brière, entre marais, villages et chemins.
-        Antivol inclus, casque et panier en option, livraison possible dans un rayon de ${VB.BIKE.deliveryRadiusKm} km.</p>
+        <div class="home-logo">
+          <img src="assets/logo.jpg" alt="Un vélo électrique au bord des marais de Brière" width="760" height="760">
+        </div>
       </div>
 
       <div class="home-grid">

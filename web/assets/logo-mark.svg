@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mar'o Vélo">
+  <title>Mar'o Vélo</title>
+  <!-- La marque tient en deux idées : une roue, et l'eau du marais qui la
+       coupe. Rien d'autre, pour qu'elle survive à 16 pixels. -->
+  <rect width="64" height="64" rx="17" fill="#012A2B"/>
+  <g fill="none" stroke="#77F584" stroke-linecap="round">
+    <circle cx="32" cy="28" r="15.5" stroke-width="3.6"/>
+    <g stroke-width="2" opacity=".5">
+      <path d="M32 28V14"/>
+      <path d="M32 28l12.5 7.2"/>
+      <path d="M32 28l-12.5 7.2"/>
+    </g>
+    <path d="M7 43.5h50" stroke-width="4"/>
+    <path d="M16.5 52.5h31" stroke-width="3.4" opacity=".6"/>
+  </g>
+  <circle cx="32" cy="28" r="3.2" fill="#77F584"/>
+</svg>
