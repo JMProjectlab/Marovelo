@@ -25,7 +25,7 @@ fait, le déploiement échoue avec une erreur d'autorisation.
 
 Une fois activé, le site est servi à l'adresse :
 
-    https://jmprojectlab.github.io/Velobriere/
+    https://jmprojectlab.github.io/Marovelo/
 
 Le workflow peut aussi être lancé à la main depuis l'onglet `Actions`
 (bouton « Run workflow »). Attention : ce bouton n'apparaît qu'une fois le

@@ -5,7 +5,7 @@ Deux applications, mêmes fonctionnalités et mêmes règles métier :
 | Dossier | Quoi | Comment l'ouvrir |
 |---|---|---|
 | `Velobriere/` | App iOS (SwiftUI) | `Velobriere.xcodeproj` dans Xcode 15+ |
-| `web/` | Application web responsive | En ligne sur [GitHub Pages](https://jmprojectlab.github.io/Velobriere/), ou `web/index.html` en local — voir [`web/README.md`](web/README.md) |
+| `web/` | Application web responsive | En ligne sur [GitHub Pages](https://jmprojectlab.github.io/Marovelo/), ou `web/index.html` en local — voir [`web/README.md`](web/README.md) |
 | `brand/` | Charte graphique | [`brand/charte-graphique.html`](brand/charte-graphique.html) dans un navigateur |
 
 Les règles d'annulation, de tarification et de facturation sont dupliquées dans
