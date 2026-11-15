@@ -941,9 +941,9 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   min-height: clamp(300px, 32vw, 400px);
   display: flex;
   align-items: flex-end;
-  background-image: url("../assets/hero-briere.jpg");
+  background-image: url("../assets/hero-cyclistes.jpg");
   background-size: cover;
-  background-position: center 46%;
+  background-position: center 42%;
   background-color: #012A2B;
 }
 .home-hero::before {
