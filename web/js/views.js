@@ -622,7 +622,7 @@ ${VB.esc(inv.customerEmail || '')}</p>
 VB.viewLegalIndex = () => `
   <div class="page-head">
     <h1>Informations</h1>
-    <p class="lede">Informations légales de Mar'o Vélo et détail du traitement de vos données.</p>
+    <p class="lede">Informations légales de Mar'O Velo et détail du traitement de vos données.</p>
   </div>
   <div class="legal-grid">
     ${VB.LEGAL_DOCS.map(doc => `
@@ -954,9 +954,9 @@ VB.viewHome = () => {
     <div class="home">
       <div class="home-hero">
         <div class="home-logo">
-          <img src="assets/logo.jpg" alt="Mar'o Vélo — vélo électrique au bord des marais de Brière" width="480" height="480">
+          <img src="assets/logo.jpg" alt="Mar'O Velo — vélo électrique au bord des marais de Brière" width="480" height="480">
         </div>
-        <h1 class="home-title">MAR'O VÉLO</h1>
+        <h1 class="home-title">MAR'O VELO</h1>
         <p class="home-tagline">Location de vélos électriques en Brière</p>
         <p class="home-lede">Balades électriques au cœur de la Brière, entre marais, villages et chemins.
         Antivol inclus, casque et panier en option, livraison possible dans un rayon de ${VB.BIKE.deliveryRadiusKm} km.</p>

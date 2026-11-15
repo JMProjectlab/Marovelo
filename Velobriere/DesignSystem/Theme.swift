@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Design tokens derived from la charte graphique Mar'o Vélo (v1.0).
+/// Design tokens derived from la charte graphique Mar'O Velo (v1.0).
 enum Theme {
     enum Colors {
         static let background = Color("ColorBackground")

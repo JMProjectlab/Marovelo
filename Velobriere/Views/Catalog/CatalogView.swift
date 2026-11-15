@@ -45,7 +45,7 @@ struct CatalogView: View {
                     )
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("MAR'O VÉLO")
+                    Text("MAR'O VELO")
                         .font(Theme.Fonts.display(14, weight: .bold))
                         .tracking(1)
                         .foregroundStyle(Theme.Colors.primaryStrong)

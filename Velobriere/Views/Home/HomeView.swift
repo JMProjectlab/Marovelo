@@ -54,9 +54,9 @@ struct HomeView: View {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
                         .stroke(Theme.Colors.line, lineWidth: 1)
                 )
-                .accessibilityLabel("Mar'o Vélo — vélo électrique au bord des marais de Brière")
+                .accessibilityLabel("Mar'O Velo — vélo électrique au bord des marais de Brière")
 
-            Text("MAR'O VÉLO")
+            Text("MAR'O VELO")
                 .font(Theme.Fonts.display(30, weight: .bold))
                 .tracking(3)
                 .foregroundStyle(Theme.Colors.primaryStrong)
