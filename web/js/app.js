@@ -799,4 +799,21 @@ VB.boot = () => {
     .catch(e => console.warn('[VB] Firebase indisponible :', e));
 };
 
-document.addEventListener('DOMContentLoaded', VB.boot);
+/* La hauteur de l'en-tête varie : une ou deux rangées selon la largeur, et
+   le point de bascule dépend de la longueur des libellés. Le bandeau
+   d'accueil a besoin de la valeur réelle pour que son texte passe dessous,
+   donc on la mesure plutôt que de la deviner. */
+VB.suivreHauteurEntete = () => {
+  const entete = document.querySelector('.site-header');
+  if (!entete) return;
+  const poser = () => document.documentElement.style.setProperty(
+    '--hauteur-entete', Math.round(entete.getBoundingClientRect().height) + 'px');
+  poser();
+  if (window.ResizeObserver) new ResizeObserver(poser).observe(entete);
+  else window.addEventListener('resize', poser);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  VB.suivreHauteurEntete();
+  VB.boot();
+});
