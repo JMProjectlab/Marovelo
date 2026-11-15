@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mar'o Vélo">
-  <title>Mar'o Vélo</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mar'O Velo">
+  <title>Mar'O Velo</title>
   <!-- La marque tient en deux idées : une roue, et l'eau du marais qui la
        coupe. Rien d'autre, pour qu'elle survive à 16 pixels. -->
   <rect width="64" height="64" rx="17" fill="#012A2B"/>

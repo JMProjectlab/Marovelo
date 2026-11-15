@@ -622,7 +622,7 @@ ${VB.esc(inv.customerEmail || '')}</p>
 VB.viewLegalIndex = () => `
   <div class="page-head">
     <h1>Informations</h1>
-    <p class="lede">Informations légales de Mar'o Vélo et détail du traitement de vos données.</p>
+    <p class="lede">Informations légales de Mar'O Velo et détail du traitement de vos données.</p>
   </div>
   <div class="legal-grid">
     ${VB.LEGAL_DOCS.map(doc => `

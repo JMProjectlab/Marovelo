@@ -8,7 +8,7 @@ import Foundation
 /// (lien ci-dessous) n'a pas pu être récupérée automatiquement (accès
 /// restreint sur decathlonpro.fr), donc l'app renvoie vers la page officielle
 /// plutôt que d'afficher des chiffres non vérifiés. Les tarifs, eux, sont
-/// ceux communiqués par Mar'o Vélo — antivol inclus avec chaque vélo, casque
+/// ceux communiqués par Mar'O Velo — antivol inclus avec chaque vélo, casque
 /// et panier en option à 1 € par jour et par vélo, livraison en option
 /// (+15 €, rayon de 15 km).
 enum BikeCatalog {
