@@ -32,6 +32,3 @@ xcuserdata/
 # macOS
 # ---------------------------------------------------------------------------
 .DS_Store
-
-# Dossier d'assemblage du site, construit par le workflow de déploiement.
-_site/
