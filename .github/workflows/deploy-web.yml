@@ -46,9 +46,7 @@ jobs:
                    web/assets/hero-cyclistes.webp \
                    web/assets/home/velos.jpg web/assets/home/briere.jpg \
                    web/assets/home/cyclistes.jpg \
-                   web/assets/bike-sm.jpg web/assets/bike-lxl.jpg \
-                   brand/charte-graphique.html \
-                   brand/assets/marque-simplifiee-mar-o-velo.svg; do
+                   web/assets/bike-sm.jpg web/assets/bike-lxl.jpg; do
             test -f "$f" || { echo "::error::Fichier manquant : $f"; exit 1; }
           done
           echo "Tous les fichiers de l'application web sont présents."
@@ -56,24 +54,10 @@ jobs:
       - name: Configurer Pages
         uses: actions/configure-pages@v5
 
-      - name: Assembler le site
-        run: |
-          set -e
-          rm -rf _site
-          cp -r web _site
-          # La charte est publiée sous /charte/. Ses chemins sont relatifs
-          # (./assets/...), donc son dossier d'images et de polices la suit
-          # tel quel et rien n'est à réécrire dans le HTML.
-          mkdir -p _site/charte
-          cp brand/charte-graphique.html _site/charte/index.html
-          cp -r brand/assets _site/charte/assets
-          echo "Site assemblé :"
-          du -sh _site _site/charte
-
       - name: Préparer l'artefact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: web
 
       - name: Déployer
         id: deployment
