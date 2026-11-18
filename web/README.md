@@ -36,6 +36,9 @@ fusion dans `main`.
 
 - **Page d'accueil** portant le logo de la marque et quatre entrées : Vélos,
   Mes réservations, Se connecter (ou Mon compte) et Informations
+- **Bloc « Découvrez notre app mobile »** en bas de l'accueil : quatre
+  bénéfices, les deux badges de magasin et une maquette de téléphone — voir
+  plus bas
 - **Comptes clients** : inscription, connexion, page compte, changement de mot
   de passe — voir les limites plus bas
 - Catalogue et fiche vélo, avec la grille tarifaire réelle et les photos des deux
@@ -55,6 +58,39 @@ fusion dans `main`.
 - Annulation avec politique de frais et confirmation explicite
 - Mentions légales, politique de confidentialité et CGL
 - Thème clair / sombre, suivant le système ou basculé manuellement
+
+## Le bloc « app mobile » de l'accueil
+
+Il annonce l'app avant qu'elle existe. Tant que les deux adresses de `VB.APP`
+(dans `js/data.js`) valent `null`, les badges ne sont pas des liens : ils
+s'affichent éteints, marqués « bientôt », et une phrase renvoie vers le
+catalogue du site.
+
+**Le jour de la publication**, renseigner les deux adresses :
+
+```js
+VB.APP = {
+  appStore: 'https://apps.apple.com/fr/app/…',
+  playStore: 'https://play.google.com/store/apps/details?id=com.marovelo.app'
+};
+```
+
+Les badges redeviennent des liens, la mention « bientôt » et la phrase
+disparaissent. Aucune autre modification n'est nécessaire.
+
+Deux réserves à lever à ce moment-là :
+
+1. **Les glyphes ne sont pas les badges officiels.** Apple et Google imposent
+   leurs propres artworks et leurs règles d'usage. Les nôtres tiennent le temps
+   que les liens n'existent pas ; ils doivent être remplacés à la publication.
+2. **Les bénéfices sont ceux d'un loueur, pas d'une place de marché.** Le bloc
+   est repris de `lokki.rent`, dont les arguments (choix de loueurs, couverture
+   nationale) ne valent pas ici. Les nôtres portent sur la disponibilité réelle
+   et le suivi de sa location — à revoir si l'app fait autre chose.
+
+La maquette de téléphone est dessinée en CSS et se nourrit du catalogue réel
+(`VB.BIKE`) : elle ne peut pas afficher un prix ou une taille que l'app ne
+pratique plus. Elle est décorative, donc masquée aux lecteurs d'écran.
 
 ## Politique d'annulation
 

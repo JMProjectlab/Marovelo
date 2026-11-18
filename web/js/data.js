@@ -69,6 +69,15 @@ VB.CONTACT = {
   phoneHref: 'tel:+33607343797'
 };
 
+/* L'app mobile n'est pas encore publiée. Tant que les deux adresses restent
+   nulles, le bloc d'accueil affiche les badges en « bientôt » au lieu de les
+   rendre cliquables : le jour de la publication, il suffit de les renseigner
+   ici, et rien d'autre ne bouge. */
+VB.APP = {
+  appStore: null,  // ex. 'https://apps.apple.com/fr/app/mar-o-velo/id0000000000'
+  playStore: null  // ex. 'https://play.google.com/store/apps/details?id=com.marovelo.app'
+};
+
 /* ⚠️ Squelettes juridiques : chaque « [À COMPLÉTER : … ] » doit être renseigné
    par Mar'O Velo, puis l'ensemble relu par un professionnel du droit. */
 VB.PLACEHOLDER_MARKER = '[À COMPLÉTER';
