@@ -941,9 +941,9 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
   min-height: clamp(300px, 32vw, 400px);
   display: flex;
   align-items: flex-end;
-  background-image: url("../assets/hero-cyclistes.webp");
+  background-image: url("../assets/hero-briere.jpg");
   background-size: cover;
-  background-position: center 42%;
+  background-position: center 46%;
   background-color: #012A2B;
 }
 .home-hero::before {
@@ -957,8 +957,8 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
     linear-gradient(100deg,
       rgba(0, 27, 28, .88) 0%,
       rgba(0, 27, 28, .74) 38%,
-      rgba(0, 27, 28, .34) 68%,
-      rgba(0, 27, 28, .12) 100%),
+      rgba(0, 27, 28, .36) 68%,
+      rgba(0, 27, 28, .14) 100%),
     linear-gradient(to top, rgba(0, 27, 28, .45) 0%, rgba(0, 27, 28, 0) 45%);
 }
 
@@ -972,12 +972,12 @@ textarea.field { resize: vertical; min-height: 86px; font-family: var(--font-bod
        assombrit sans déteindre. Et il s'allège vers le haut, là où il n'y a
        que l'en-tête à protéger. */
     background:
-      linear-gradient(to bottom, rgba(0, 0, 0, .56) 0%, rgba(0, 0, 0, 0) 215px),
+      linear-gradient(to bottom, rgba(0, 0, 0, .58) 0%, rgba(0, 0, 0, 0) 225px),
       linear-gradient(to top,
-        rgba(0, 0, 0, .82) 0%,
-        rgba(0, 0, 0, .62) 34%,
-        rgba(0, 0, 0, .34) 66%,
-        rgba(0, 0, 0, .22) 100%);
+        rgba(0, 0, 0, .84) 0%,
+        rgba(0, 0, 0, .66) 34%,
+        rgba(0, 0, 0, .4) 66%,
+        rgba(0, 0, 0, .28) 100%);
   }
   /* Le voile allégé laisse passer des zones claires sous le texte : une
      ombre portée discrète garantit la lisibilité sans réassombrir tout. */

@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1050" role="img"
+     aria-label="Deux cyclistes sur un chemin de halage au bord d'un canal, un moulin de Brière au loin">
+  <title>Deux cyclistes sur un chemin de halage, en Brière</title>
+
+  <defs>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E7F0EA"/>
+      <stop offset=".6" stop-color="#F5EFE3"/>
+      <stop offset="1" stop-color="#FAF3E4"/>
+    </linearGradient>
+    <linearGradient id="eau" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C6DBD5"/>
+      <stop offset="1" stop-color="#86AEA6"/>
+    </linearGradient>
+    <linearGradient id="pre" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#84A066"/>
+      <stop offset="1" stop-color="#48643C"/>
+    </linearGradient>
+    <linearGradient id="chemin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D5C5A1"/>
+      <stop offset="1" stop-color="#BDA980"/>
+    </linearGradient>
+    <radialGradient id="halo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FBEFD2" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#FBEFD2" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Une touffe de roseaux : une tige, deux feuilles, un épi. Réutilisée
+         à plusieurs échelles plutôt que redessinée à chaque fois. -->
+    <g id="roseau">
+      <path d="M0 0 V-300" stroke="currentColor" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <path d="M0-120 Q-52-168 -72-250" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>
+      <path d="M0-170 Q48-214 62-288" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>
+      <ellipse cx="0" cy="-322" rx="12" ry="38" fill="currentColor"/>
+    </g>
+  </defs>
+
+  <!-- Ciel, soleil bas, quelques nuages étirés -->
+  <rect width="2400" height="1050" fill="url(#ciel)"/>
+  <circle cx="1690" cy="320" r="260" fill="url(#halo)"/>
+  <circle cx="1690" cy="320" r="76" fill="#FCF2D8"/>
+  <g fill="#FFFFFF" opacity=".55">
+    <ellipse cx="520" cy="210" rx="210" ry="30"/>
+    <ellipse cx="640" cy="186" rx="130" ry="24"/>
+    <ellipse cx="1180" cy="330" rx="170" ry="22"/>
+    <ellipse cx="2060" cy="212" rx="190" ry="26"/>
+  </g>
+
+  <!-- Trois plans de végétation. Coordonnées absolues, chacun va bien d'un
+       bord à l'autre : c'est ce qui manquait au premier jet, le ciel passait
+       dessous à droite. -->
+  <path d="M0 556 C 300 530, 560 566, 860 548 C 1160 530, 1420 568, 1720 550
+           C 1960 536, 2180 560, 2400 542 L2400 660 L0 660 Z" fill="#AEC5A0"/>
+  <path d="M0 578 C 280 558, 540 588, 840 572 C 1140 556, 1400 590, 1700 574
+           C 1950 560, 2180 584, 2400 568 L2400 660 L0 660 Z" fill="#8BAA7C"/>
+  <path d="M0 598 C 320 584, 600 606, 900 594 C 1200 582, 1460 608, 1760 596
+           C 2000 586, 2200 604, 2400 592 L2400 660 L0 660 Z" fill="#6A8B5E"/>
+
+  <!-- Le moulin, marqueur de la Brière -->
+  <g transform="translate(1992 598)">
+    <path d="M-52 0 L-36-128 L36-128 L52 0 Z" fill="#33442F"/>
+    <path d="M-40-128 L0-168 L40-128 Z" fill="#283626"/>
+    <g stroke="#2B3A27" stroke-width="7" stroke-linecap="round">
+      <path d="M0-140 L-96-212"/><path d="M0-140 L96-68"/>
+      <path d="M0-140 L-72-44"/><path d="M0-140 L72-236"/>
+    </g>
+    <circle cx="0" cy="-140" r="9" fill="#1F2B1D"/>
+  </g>
+
+  <!-- Le pré. Une bande plus claire sous l'horizon et une haie l'empêchent
+       d'être un aplat. -->
+  <rect y="600" width="2400" height="450" fill="url(#pre)"/>
+  <path d="M0 600 C 420 614, 900 600, 1320 612 C 1760 624, 2080 606, 2400 616 L2400 600 Z"
+        fill="#9BB37A" opacity=".55"/>
+  <g fill="#5C7A4A" opacity=".45">
+    <path d="M0 664 C 170 650, 320 672, 500 662 C 640 654, 740 670, 880 664 L880 700 L0 700 Z"/>
+    <path d="M1500 658 C 1680 646, 1860 666, 2040 656 C 2190 648, 2300 664, 2400 658 L2400 700 L1500 700 Z"/>
+  </g>
+
+  <!-- Le canal, qui file vers l'horizon à droite -->
+  <path d="M2400 618 C 2180 700, 1900 840, 1512 1050 L2400 1050 Z" fill="url(#eau)"/>
+  <path d="M2400 618 C 2180 700, 1900 840, 1512 1050 L1572 1050 C 1960 846, 2210 712, 2400 634 Z"
+        fill="#5E7F58" opacity=".45"/>
+  <g stroke="#DCEBE6" stroke-width="8" stroke-linecap="round" opacity=".45">
+    <path d="M2140 760h180"/><path d="M1980 872h210"/><path d="M1840 972h190"/>
+  </g>
+
+  <!-- Le chemin de halage. Bords légèrement courbes : un triangle net
+       donnait une pyramide. -->
+  <path d="M1168 602 C 1210 760, 1330 900, 1470 1050 L470 1050 C 640 898, 1060 742, 1168 602 Z"
+        fill="url(#chemin)"/>
+  <path d="M1168 602 C 1210 760, 1330 900, 1470 1050 L1430 1050 C 1300 898, 1192 758, 1164 604 Z"
+        fill="#E3D7BA" opacity=".5"/>
+  <path d="M1168 602 C 1060 742, 640 898, 470 1050 L516 1050 C 690 898, 1090 748, 1172 604 Z"
+        fill="#E3D7BA" opacity=".5"/>
+
+  <!-- Deux cyclistes, vus de dos. Le plus loin d'abord. -->
+  <g transform="translate(1104 834) scale(.78)">
+    <ellipse cx="2" cy="4" rx="44" ry="10" fill="#2E4128" opacity=".3"/>
+    <ellipse cx="0" cy="-34" rx="10" ry="34" fill="#243027"/>
+    <path d="M0-60 V-96" stroke="#2C3A2F" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-15-96 L-20-46 M15-96 L20-46" stroke="#5C6B52" stroke-width="15" stroke-linecap="round"/>
+    <path d="M-33-98 Q0-124 33-98 L26-186 Q0-200 -26-186 Z" fill="#6E8C5E"/>
+    <path d="M-29-186 L-46-122 M29-186 L46-122" stroke="#C8A98A" stroke-width="13" stroke-linecap="round"/>
+    <path d="M-50-120 H50" stroke="#2C3A2F" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="0" cy="-212" r="24" fill="#C8A98A"/>
+    <path d="M-24-216 Q0-242 24-216 Q0-226 -24-216 Z" fill="#4A3A2C"/>
+  </g>
+
+  <g transform="translate(1286 902)">
+    <ellipse cx="2" cy="6" rx="52" ry="12" fill="#2E4128" opacity=".32"/>
+    <ellipse cx="0" cy="-36" rx="11" ry="36" fill="#1F2A22"/>
+    <path d="M0-64 V-102" stroke="#26332A" stroke-width="9" stroke-linecap="round"/>
+    <path d="M-16-102 L-22-48 M16-102 L22-48" stroke="#44566B" stroke-width="16" stroke-linecap="round"/>
+    <path d="M-35-104 Q0-132 35-104 L28-196 Q0-211 -28-196 Z" fill="#F4EFE4"/>
+    <path d="M-31-196 L-49-128 M31-196 L49-128" stroke="#C8A98A" stroke-width="14" stroke-linecap="round"/>
+    <path d="M-53-126 H53" stroke="#26332A" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="0" cy="-224" r="25" fill="#C8A98A"/>
+    <path d="M-26-230 Q-14-202 0-204 Q14-202 26-230 Q0-244 -26-230 Z" fill="#6B523A"/>
+    <ellipse cx="0" cy="-238" rx="52" ry="14" fill="#E3CFA4"/>
+    <path d="M-30-240 Q0-270 30-240 Z" fill="#DCC594"/>
+  </g>
+
+  <!-- Roseaux. L'échelle dit la distance : minuscules près de l'horizon,
+       à hauteur d'homme au premier plan, où ils cadrent la scène. -->
+  <g color="#6E8C56" opacity=".85">
+    <g transform="translate(366 690) scale(.17)"><use href="#roseau"/></g>
+    <g transform="translate(408 696) scale(.14)"><use href="#roseau"/></g>
+    <g transform="translate(1716 688) scale(.16)"><use href="#roseau"/></g>
+    <g transform="translate(1676 694) scale(.13)"><use href="#roseau"/></g>
+  </g>
+  <g color="#4E6B3C" opacity=".9">
+    <g transform="translate(250 772) scale(.34)"><use href="#roseau"/></g>
+    <g transform="translate(306 790) scale(.28)"><use href="#roseau"/></g>
+    <g transform="translate(1810 784) scale(.32)"><use href="#roseau"/></g>
+  </g>
+  <g color="#2F4327">
+    <g transform="translate(126 1062) scale(1.05)"><use href="#roseau"/></g>
+    <g transform="translate(212 1062) scale(.84)"><use href="#roseau"/></g>
+    <g transform="translate(48 1062) scale(.68)"><use href="#roseau"/></g>
+    <g transform="translate(2290 1062) scale(1.08)"><use href="#roseau"/></g>
+    <g transform="translate(2190 1062) scale(.82)"><use href="#roseau"/></g>
+    <g transform="translate(2360 1062) scale(.7)"><use href="#roseau"/></g>
+  </g>
+</svg>
