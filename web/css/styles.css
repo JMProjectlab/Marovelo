@@ -1256,6 +1256,239 @@ body:has(.home) .brand-mark { border-color: rgba(255, 255, 255, .4); }
 .home-contact a { font-weight: 600; text-decoration: none; white-space: nowrap; }
 .home-contact a:hover { text-decoration: underline; }
 
+/* ---------- Le bloc « notre app mobile » ---------- */
+
+/* Un panneau teal posé après la rangée de cartes, comme chez le modèle : le
+   texte à gauche, le téléphone à droite, et le téléphone qui déborde du
+   cadre par le bas. Ses couleurs sont écrites en dur, comme celles du
+   bandeau : le panneau reste sombre dans les deux thèmes. */
+.home-app {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(32px, 5vw, 56px);
+  border-radius: 32px;
+  background: #012A2B;
+  padding: clamp(28px, 4vw, 56px);
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+/* Une lueur menthe dans l'angle, pour que le panneau ne soit pas un aplat. */
+.home-app::after {
+  content: "";
+  position: absolute;
+  top: -140px; right: -120px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(207, 227, 212, .22) 0%, rgba(207, 227, 212, 0) 70%);
+  pointer-events: none;
+}
+.home-app-text { position: relative; z-index: 1; min-width: 0; }
+
+.home-app-title {
+  font: 700 clamp(26px, 3.6vw, 42px)/1.05 var(--font-display);
+  letter-spacing: -.04em;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.home-app-lede {
+  font-size: clamp(15px, 1.7vw, 17px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .82);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.home-app-list {
+  list-style: none;
+  margin: clamp(22px, 3vw, 30px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.home-app-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .88);
+}
+.home-app-icon {
+  flex: 0 0 auto;
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  /* En dur, comme pour le bandeau : le panneau reste teal dans les deux
+     thèmes, donc la pastille doit rester menthe. `--mint` s'assombrit en
+     thème sombre et la ferait disparaître sur le fond. */
+  background: #CFE3D4;
+  color: #012A2B;
+  display: grid; place-items: center;
+}
+.home-app-icon svg { width: 20px; height: 20px; display: block; }
+
+.home-app-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(24px, 3vw, 32px);
+}
+
+/* Le badge : une pilule presque noire sur le teal, lisible sans bordure
+   criarde. Lien quand l'adresse existe, pastille éteinte sinon. */
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 18px;
+  border-radius: 14px;
+  background: #001B1C;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .32);
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: background .15s, transform .15s;
+}
+.store-badge:hover { background: #06372F; transform: translateY(-2px); }
+.store-glyph { width: 26px; height: 26px; display: block; flex: 0 0 auto; }
+.store-badge-text small {
+  display: block;
+  font: 500 10px/1.2 var(--font-body);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .72);
+}
+.store-badge-text strong {
+  display: block;
+  font: 600 15.5px/1.2 var(--font-display);
+  letter-spacing: -.02em;
+}
+/* Pas de lien, pas de survol : la pilule est éteinte et le dit. */
+.store-badge-soon { opacity: .62; cursor: default; }
+.store-badge-soon:hover { background: #001B1C; transform: none; }
+.store-soon {
+  font: 600 10px/1 var(--font-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: #CFE3D4;
+  color: #012A2B;
+  border-radius: var(--radius-control);
+  padding: 5px 9px;
+}
+
+.home-app-note {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .7);
+  margin: 18px 0 0;
+}
+.home-app-note .btn-link {
+  display: inline;
+  font: inherit;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+.home-app-note .btn-link:hover { color: #CFE3D4; }
+
+/* La maquette : un téléphone dessiné en CSS, qui déborde du panneau par le
+   bas. Rien d'une capture d'écran — son contenu vient du catalogue. */
+.app-phone {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  width: min(272px, 80%);
+  aspect-ratio: 9 / 18.5;
+  border-radius: 38px;
+  background: #001B1C;
+  padding: 9px;
+  box-shadow: 0 24px 50px rgba(0, 10, 10, .45), inset 0 0 0 1.5px rgba(255, 255, 255, .22);
+}
+.app-phone-notch {
+  position: absolute;
+  top: 16px; left: 50%;
+  transform: translateX(-50%);
+  width: 86px; height: 20px;
+  border-radius: var(--radius-control);
+  background: #001B1C;
+  z-index: 2;
+}
+.app-phone-screen {
+  height: 100%;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #FDF9F6;
+  padding: 34px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.app-phone-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 13px/1 var(--font-display);
+  color: #012A2B;
+}
+.app-phone-search {
+  display: grid;
+  gap: 3px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(89, 86, 83, .12);
+}
+.app-phone-dates { font: 600 12.5px/1.2 var(--font-body); color: #001B1C; }
+.app-phone-place { font-size: 10.5px; color: #595653; }
+.app-phone-tabs { display: flex; gap: 6px; }
+.app-phone-tabs span {
+  font: 500 10px/1 var(--font-body);
+  color: #595653;
+  background: #F0DFCD;
+  border-radius: var(--radius-control);
+  padding: 6px 10px;
+}
+.app-phone-tabs .is-on { background: #012A2B; color: #FDF9F6; font-weight: 600; }
+.app-phone-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(89, 86, 83, .12);
+  flex: 0 0 auto;
+}
+.app-phone-card img { display: block; width: 100%; height: 92px; object-fit: cover; }
+.app-phone-card-body { display: grid; gap: 3px; padding: 10px 12px 12px; }
+.app-phone-card-body strong { font: 700 12.5px/1.2 var(--font-display); color: #001B1C; }
+.app-phone-card-body span { font-size: 10.5px; color: #595653; }
+/* L'écran du téléphone est crème dans les deux thèmes : ses couleurs sont
+   écrites en dur, sans quoi la pastille de disponibilité s'inverserait sur
+   un fond qui, lui, ne bouge pas. */
+.app-phone-pill {
+  justify-self: start;
+  background: #E7F0E9;
+  color: #004B3D;
+  border-radius: var(--radius-control);
+  padding: 4px 9px;
+  font-weight: 600;
+}
+.app-phone-price { font: 600 12px/1.2 var(--font-body) !important; color: #012A2B !important; }
+/* La deuxième carte est coupée par le bas de l'écran : c'est ce qui fait
+   croire à une liste qui continue. */
+.app-phone-card-cut { margin-bottom: -40px; }
+
+/* Le téléphone ne passe à droite qu'à partir de 1040 px. Plus tôt, la
+   colonne de texte tombe à 400 px : les badges se mettent l'un sous l'autre
+   et le téléphone touche le bord. Sous ce seuil, tout s'empile. */
+@media (min-width: 1040px) {
+  .home-app { grid-template-columns: 1.15fr .85fr; }
+  .app-phone {
+    align-self: end;
+    justify-self: end;
+    width: min(290px, 100%);
+    margin-bottom: calc(-1 * clamp(28px, 4vw, 56px) - 36px);
+  }
+}
+
 /* ---------- Comptes ---------- */
 
 .auth-wrap { max-width: 480px; margin: 0 auto; }

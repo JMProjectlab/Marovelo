@@ -897,7 +897,12 @@ VB.ICONS = {
     <circle cx="12" cy="8.2" r="3.7"></circle>
     <path d="M4.8 20.2c.9-3.6 3.8-5.6 7.2-5.6s6.3 2 7.2 5.6"></path></svg>`,
   info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5"></path><path d="M12 7.6h.01"></path></svg>`
+    <circle cx="12" cy="12" r="9"></circle><path d="M12 11v5.5"></path><path d="M12 7.6h.01"></path></svg>`,
+  receipt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6 3.2h12v17.6l-3-1.8-3 1.8-3-1.8-3 1.8z"></path>
+    <path d="M9.2 8.4h5.6M9.2 12.2h5.6M9.2 16h3.2"></path></svg>`,
+  phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M6.4 3.6h2.9l1.5 3.7-2 1.4a11 11 0 0 0 4.5 4.5l1.4-2 3.7 1.5v2.9a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.4 5.8a2 2 0 0 1 2-2.2z"></path></svg>`
 };
 
 
@@ -910,6 +915,126 @@ VB.DECOS = {
   soleilAjoure: `<svg viewBox="0 0 100 100" fill="none" stroke="#E6D3A3" stroke-width="7" aria-hidden="true"><circle cx="50" cy="50" r="26"/><g fill="#E6D3A3" stroke="none"><circle cx="50" cy="13" r="9"/><circle cx="76" cy="24" r="9"/><circle cx="87" cy="50" r="9"/><circle cx="76" cy="76" r="9"/><circle cx="50" cy="87" r="9"/><circle cx="24" cy="76" r="9"/><circle cx="13" cy="50" r="9"/><circle cx="24" cy="24" r="9"/></g></svg>`,
   fleur: `<svg viewBox="0 0 100 100" fill="#CFE3D4" aria-hidden="true"><g><ellipse cx="50" cy="22" rx="16" ry="21"/><ellipse cx="78" cy="50" rx="21" ry="16"/><ellipse cx="50" cy="78" rx="16" ry="21"/><ellipse cx="22" cy="50" rx="21" ry="16"/><ellipse cx="29" cy="29" rx="14" ry="18" transform="rotate(-45 29 29)"/><ellipse cx="71" cy="71" rx="14" ry="18" transform="rotate(-45 71 71)"/></g><ellipse cx="50" cy="50" rx="11" ry="8" fill="#FDF9F6"/></svg>`
 };
+
+/* ---------- Le bloc « notre app mobile » ---------- */
+
+/* Repris de lokki.rent : panneau teal, quatre bénéfices à picto, les deux
+   badges, une maquette de téléphone à droite. Les bénéfices, eux, ne sont pas
+   ceux du modèle. Lokki vend un choix de loueurs et une couverture nationale ;
+   nous avons un loueur et quatre vélos. L'argument est donc l'inverse : pas le
+   choix, mais la disponibilité réelle et le suivi de sa location. */
+VB.APP_BENEFITS = [
+  { icon: 'calendar', text: 'Les disponibilités en direct, taille par taille.' },
+  { icon: 'bike', text: 'Votre vélo réservé et payé en quelques minutes.' },
+  { icon: 'receipt', text: 'Vos factures et vos avoirs toujours avec vous.' },
+  { icon: 'phone', text: 'Le loueur à portée de main, à Saint-Lyphard.' }
+];
+
+/* Un badge est un lien tant que son adresse existe. Sinon c'est la même
+   pilule, éteinte, marquée « bientôt » : on annonce l'app sans promettre un
+   lien qui tomberait dans le vide. */
+VB.storeBadge = ({ href, glyph, small, strong, aria }) => {
+  const inner = `${glyph}<span class="store-badge-text">
+      <small>${VB.esc(small)}</small><strong>${VB.esc(strong)}</strong></span>`;
+  return href
+    ? `<a class="store-badge" href="${VB.esc(href)}" target="_blank" rel="noopener">${inner}</a>`
+    : `<span class="store-badge store-badge-soon" role="img"
+             aria-label="${VB.esc(aria)} — bientôt disponible">${inner}<span class="store-soon">bientôt</span></span>`;
+};
+
+/* Les glyphes sont les nôtres, pas les badges officiels d'Apple et de Google :
+   leur usage est encadré, et ils n'auront de sens que le jour où les liens
+   existeront. À remplacer par les artworks officiels à la publication. */
+VB.STORE_GLYPHS = {
+  apple: `<svg class="store-glyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M16.5 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-.9-2.5-3.5z"></path>
+    <path d="M14.3 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3z"></path></svg>`,
+  play: `<svg class="store-glyph" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3.9 2.3 14.3 12 3.9 21.7a1.5 1.5 0 0 1-.6-1.2V3.5c0-.5.2-.9.6-1.2z" fill="#34D1E0"></path>
+    <path d="M3.9 2.3 14.3 12l2.9-2.7-11.6-6.6a1.6 1.6 0 0 0-1.7-.4z" fill="#64E88C"></path>
+    <path d="M3.9 21.7 14.3 12l2.9 2.7-11.6 6.6a1.6 1.6 0 0 1-1.7.4z" fill="#F24C53"></path>
+    <path d="M17.2 9.3 14.3 12l2.9 2.7 3-1.7c.9-.5.9-1.5 0-2l-3-1.7z" fill="#FFCB4D"></path></svg>`
+};
+
+/* La maquette est une illustration de l'app, pas une capture : elle se nourrit
+   du catalogue réel, donc elle ne peut pas annoncer un prix ou une taille que
+   l'app ne pratique plus. Décorative, elle est masquée aux lecteurs d'écran —
+   les quatre bénéfices disent déjà ce qu'elle montre. */
+VB.appMockup = () => {
+  const variant = VB.BIKE.variants[0];
+  const day = VB.BIKE.pricingOptions.find(o => o.id === 'day');
+  const avail = VB.availableOn(new Date());
+
+  /* Un week-end à venir, jamais une date passée : la maquette ne doit pas
+     vieillir sur la page. */
+  const label = d => new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' }).format(d);
+  const start = new Date();
+  start.setDate(start.getDate() + ((6 - start.getDay() + 7) % 7 || 7));
+  const end = new Date(start);
+  end.setDate(end.getDate() + 1);
+
+  return `
+    <div class="app-phone" aria-hidden="true">
+      <div class="app-phone-notch"></div>
+      <div class="app-phone-screen">
+        <div class="app-phone-head">
+          <img src="assets/logo-mark.svg" alt="" width="24" height="24">
+          <span>Mar'O Velo</span>
+        </div>
+        <div class="app-phone-search">
+          <span class="app-phone-dates">${label(start)} → ${label(end)}</span>
+          <span class="app-phone-place">Saint-Lyphard, Brière</span>
+        </div>
+        <div class="app-phone-tabs">
+          <span class="is-on">Vélos</span><span>Formules</span><span>Options</span>
+        </div>
+        <div class="app-phone-card">
+          <img src="${variant.image}" alt="" loading="lazy">
+          <div class="app-phone-card-body">
+            <strong>${VB.esc(VB.BIKE.name)}</strong>
+            <span>${VB.esc(variant.size)} · ${VB.esc(variant.color)}</span>
+            <span class="app-phone-pill">${avail}/${VB.BIKE.totalUnits} disponibles</span>
+            <span class="app-phone-price">${VB.formatEUR(day.price)} la journée</span>
+          </div>
+        </div>
+        <div class="app-phone-card app-phone-card-cut">
+          <img src="${VB.BIKE.variants[1].image}" alt="" loading="lazy">
+          <div class="app-phone-card-body">
+            <strong>${VB.esc(VB.BIKE.name)}</strong>
+            <span>${VB.esc(VB.BIKE.variants[1].size)} · ${VB.esc(VB.BIKE.variants[1].color)}</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+};
+
+VB.viewHomeApp = () => `
+  <section class="home-app" aria-labelledby="homeAppTitle">
+    <div class="home-app-text">
+      <h2 class="home-app-title" id="homeAppTitle">Découvrez notre app mobile</h2>
+      <p class="home-app-lede">Le même vélo, les mêmes tarifs, dans votre poche. Réservez,
+      retrouvez vos locations et vos factures, où que vous soyez en Brière.</p>
+      <ul class="home-app-list">
+        ${VB.APP_BENEFITS.map(b => `
+          <li><span class="home-app-icon">${VB.ICONS[b.icon]}</span>${VB.esc(b.text)}</li>`).join('')}
+      </ul>
+      <div class="home-app-badges">
+        ${VB.storeBadge({
+          href: VB.APP.appStore, glyph: VB.STORE_GLYPHS.apple,
+          small: 'Télécharger dans', strong: "l'App Store", aria: 'App Store'
+        })}
+        ${VB.storeBadge({
+          href: VB.APP.playStore, glyph: VB.STORE_GLYPHS.play,
+          small: 'Disponible sur', strong: 'Google Play', aria: 'Google Play'
+        })}
+      </div>
+      ${VB.APP.appStore || VB.APP.playStore ? '' : `
+        <p class="home-app-note">L'app n'est pas encore publiée. En attendant,
+        le site fait tout ce qu'elle fera —
+        <button class="btn-link" data-nav="catalog" type="button">réserver un vélo</button>.</p>`}
+    </div>
+    ${VB.appMockup()}
+  </section>`;
 
 VB.viewHome = () => {
   const account = VB.Accounts.current();
@@ -1008,6 +1133,8 @@ VB.viewHome = () => {
             </span>
           </button>`).join('')}
       </div>
+
+      ${VB.viewHomeApp()}
 
       <p class="home-contact">
         ${VB.esc(VB.CONTACT.address)}, ${VB.esc(VB.CONTACT.postal)} ·
